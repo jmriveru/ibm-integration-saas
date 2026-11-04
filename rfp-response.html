@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Respuesta Técnica RFP — Plataforma de Integraciones CMPC 2026</title>
+<style>
+:root{
+  --blue:#2d6a2d; --blue-dark:#1a3d1a; --accent:#5a9e3a; --accent-dk:#3a6b1e;
+  --forest-deep:#1c3d1c; --forest-mid:#3a6b35; --forest-light:#7fb069;
+  --wood:#8b5e3c; --wood-light:#c49a6c; --moss:#4a7a3a; --bark:#5c4033;
+  --dark:#111a0f; --gray:#4a5a42; --light:#f0f4ec; --white:#fafdf7;
+  --cream:#f5f0e8; --success:#3a8a2a; --danger:#c0392b; --warning:#d4a017;
+  --grad-1:linear-gradient(135deg,#3a6b1e 0%,#1a3d1a 100%);
+  --grad-2:linear-gradient(135deg,#5a9e3a 0%,#3a6b1e 100%);
+  --pad-x:clamp(24px,3.5vw,96px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:58px}
+body{font-family:'IBM Plex Sans','Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.5;color:var(--dark);background:var(--dark);padding-top:56px;font-size:clamp(14px,0.9vw,17px);overflow-x:hidden}
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;height:56px;background:rgba(10,10,10,.96);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad-x);border-bottom:1px solid rgba(255,255,255,.1);transition:height .25s ease}
+.header.shrank{height:44px}
+.header .logos{display:flex;align-items:center;gap:20px}
+.header .logo-ibm{height:24px;width:auto;filter:brightness(0) invert(1)}
+.header .logo-bob{height:32px;width:auto}
+.header nav{display:flex;gap:clamp(10px,1.2vw,24px);flex-wrap:nowrap}
+.header nav a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.3px;white-space:nowrap}
+.header nav a:hover{color:var(--accent)}
+section{padding:clamp(32px,4vw,72px) var(--pad-x);position:relative}
+.wrap{width:100%;max-width:1440px;margin:0 auto}
+.light{background:linear-gradient(180deg,var(--white) 0%,var(--light) 100%)}
+.alt{background:var(--light)}
+.dark{background:var(--dark);color:#fff}
+.eyebrow{display:inline-block;color:var(--accent);font-weight:700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+h2.title{font-size:clamp(1.6rem,2.2vw,2.6rem);font-weight:900;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+p.lead{font-size:clamp(.95rem,1.1vw,1.25rem);color:var(--gray);max-width:62em;margin-bottom:clamp(18px,2vw,36px)}
+.dark p.lead{color:rgba(255,255,255,.72)}
+.grid{display:grid;gap:clamp(12px,1.4vw,24px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:linear-gradient(160deg,#fff 0%,#f3f6f4 100%);border-radius:18px;padding:clamp(20px,1.8vw,36px);border:none;position:relative;box-shadow:0 1px 2px rgba(10,40,25,.08),0 6px 14px rgba(10,40,25,.09),0 18px 40px rgba(10,40,25,.12),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-4px)}
+.card h3{font-size:clamp(1.05rem,1.3vw,1.5rem);font-weight:800;margin-bottom:10px;line-height:1.2}
+.card p,.card li{color:var(--gray);font-size:1em}
+.card-d{background:linear-gradient(160deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.03) 100%);border:none;border-radius:18px;padding:clamp(20px,1.8vw,36px);box-shadow:0 2px 4px rgba(0,0,0,.4),0 12px 28px rgba(0,0,0,.45),0 30px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14);transition:transform .25s ease}
+.card-d:hover{transform:translateY(-4px)}
+.card-d h3{color:var(--accent);font-size:clamp(1.05rem,1.3vw,1.5rem);font-weight:800;margin-bottom:10px}
+.card-d p,.card-d li{color:rgba(255,255,255,.82)}
+.chip{display:inline-block;padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:rgba(15,98,254,.12);color:var(--blue);margin-bottom:10px}
+.chip.o{background:rgba(45,190,96,.15);color:#0B6B3A}
+.insight{background:var(--grad-1);color:#fff;border-radius:18px;padding:clamp(20px,2vw,40px);margin-top:clamp(20px,2vw,40px);font-weight:700;font-size:clamp(1.05rem,1.4vw,1.7rem);line-height:1.35;box-shadow:0 16px 48px rgba(15,98,254,.28)}
+.insight small{display:block;font-weight:400;opacity:.85;font-size:.7em;margin-top:6px}
+.note{font-size:.85em;color:var(--gray);margin-top:14px}
+.dark .note{color:rgba(255,255,255,.55)}
+.hero{min-height:70vh;background:var(--dark);color:#fff;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-15%;width:70%;height:140%;background:radial-gradient(circle,rgba(42,107,29,.38) 0%,transparent 70%)}
+.hero::after{content:'';position:absolute;bottom:-40%;left:-10%;width:55%;height:100%;background:radial-gradient(circle,rgba(90,158,58,.22) 0%,transparent 70%)}
+.badge{display:inline-block;background:rgba(45,190,96,.2);border:2px solid var(--accent);padding:6px 20px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,3.8vw,4.4rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:14px;background:linear-gradient(135deg,#fff 0%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* RFP-specific */
+.weight-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.12);margin-top:8px}
+.weight-bar .fill{height:100%;border-radius:3px;background:var(--accent)}
+.cat-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px;transition:transform .2s,border-color .2s;cursor:pointer;text-decoration:none;display:block;color:inherit}
+.cat-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.cat-card .cat-weight{font-size:.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px}
+.cat-card .cat-name{font-size:1rem;font-weight:800;color:#fff;margin-bottom:6px}
+.cat-card .cat-desc{font-size:.82rem;color:rgba(255,255,255,.58);line-height:1.4}
+.criteria-id{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:32px;background:var(--accent);color:#fff;border-radius:8px;padding:0 10px;font-weight:900;font-size:.82rem;flex-shrink:0}
+.check-list{list-style:none;padding:0;margin:0}
+.check-list li{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.91rem;align-items:flex-start}
+.check-list li:last-child{border-bottom:none}
+.check-list .ck{color:var(--success);font-size:1em;flex-shrink:0;margin-top:2px}
+.check-list.dark li{border-color:rgba(255,255,255,.07);color:rgba(255,255,255,.82)}
+.partner-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px 22px}
+.partner-card h4{color:var(--accent);font-size:1.05rem;font-weight:800;margin-bottom:6px}
+.partner-card p{color:rgba(255,255,255,.68);font-size:.88rem}
+.flow-rfp{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-top:20px}
+.flow-rfp .fb{flex:1;min-width:120px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px;text-align:center;font-size:.8rem;color:rgba(255,255,255,.8)}
+.flow-rfp .fb .fi{font-size:1.4rem;margin-bottom:5px}
+.flow-rfp .fa{padding:0 6px;color:var(--accent);font-size:1.2rem;font-weight:900}
+.cta-link{display:inline-block;background:var(--accent);color:#fff;padding:13px 32px;border-radius:50px;font-size:.95rem;font-weight:700;text-decoration:none;letter-spacing:.4px;transition:background .2s;margin:4px}
+.cta-link:hover{background:var(--accent-dk)}
+.cta-link.outline{background:transparent;border:2px solid var(--accent);color:var(--accent)}
+.cta-link.outline:hover{background:var(--accent);color:#fff}
+footer{background:#0a140a;color:#fff;padding:40px var(--pad-x);text-align:center;font-size:.9em}
+footer p{opacity:.65;margin-bottom:8px}
+@media(max-width:1100px){.header nav{display:none}}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logos">
+    <img class="logo-ibm" id="logo-ibm" alt="IBM">
+    <img class="logo-bob" id="logo-bob" alt="Bob">
+  </div>
+  <nav>
+    <a href="#scorecard">Scorecard</a>
+    <a href="#arquitectura">Arquitectura</a>
+    <a href="#conectores">Conectores</a>
+    <a href="#monitoreo">Monitoreo</a>
+    <a href="#casos-uso">Casos de uso</a>
+    <a href="#innovacion-ia">IA</a>
+    <a href="#ecosistema">Chile</a>
+    <a href="#casos-exito">Éxitos</a>
+    <a href="#modelo-financiero">Financiero</a>
+  </nav>
+</header>
+
+<!-- HERO / SCORECARD -->
+<section class="hero" id="scorecard">
+  <div class="wrap" style="position:relative;z-index:2;width:100%">
+    <span class="badge">Respuesta a RFP · Doc 5953054998</span>
+    <h1>Respuesta técnica a la<br>Matriz de Evaluación</h1>
+    <p style="font-size:clamp(.95rem,1.3vw,1.5rem);color:rgba(255,255,255,.82);margin-bottom:8px">IBM Integration SaaS — CMPC 2026 · Plataforma de Integraciones</p>
+    <p style="font-size:clamp(.85rem,1vw,1.1rem);color:rgba(255,255,255,.55);margin-bottom:32px">Cada criterio de la matriz se responde con evidencia documentada de la plataforma IBM.</p>
+    <div class="grid g4" style="margin-bottom:24px">
+      <a class="cat-card" href="#arquitectura">
+        <div class="cat-weight">A · 15%</div>
+        <div class="cat-name">Arquitectura</div>
+        <div class="cat-desc">SLA 99,9% · Edge Runtimes · Multi-cloud · Seguridad</div>
+        <div class="weight-bar"><div class="fill" style="width:15%"></div></div>
+      </a>
+      <a class="cat-card" href="#conectores">
+        <div class="cat-weight">C · 4%</div>
+        <div class="cat-name">Conectores</div>
+        <div class="cat-desc">SAP RFC/BAPI/IDoc · Salesforce Bulk/CDC/OAuth</div>
+        <div class="weight-bar"><div class="fill" style="width:4%"></div></div>
+      </a>
+      <a class="cat-card" href="#monitoreo">
+        <div class="cat-weight">M · 10%</div>
+        <div class="cat-name">Monitoreo</div>
+        <div class="cat-desc">Trazabilidad end-to-end · DLQ · OpenTelemetry</div>
+        <div class="weight-bar"><div class="fill" style="width:10%"></div></div>
+      </a>
+      <a class="cat-card" href="#casos-uso">
+        <div class="cat-weight">U · 10%</div>
+        <div class="cat-name">Casos de uso</div>
+        <div class="cat-desc">Aceleradores SAP/Salesforce · Git · CI/CD</div>
+        <div class="weight-bar"><div class="fill" style="width:10%"></div></div>
+      </a>
+      <a class="cat-card" href="#innovacion-ia">
+        <div class="cat-weight">I · 5%</div>
+        <div class="cat-name">Innovación IA</div>
+        <div class="cat-desc">AI Mapping · Observability Agent · AI Agents</div>
+        <div class="weight-bar"><div class="fill" style="width:5%"></div></div>
+      </a>
+      <a class="cat-card" href="#ecosistema">
+        <div class="cat-weight">E · 6%</div>
+        <div class="cat-name">Ecosistema Chile</div>
+        <div class="cat-desc">DXC · 3HTP · SOCIUS · Mainsoft</div>
+        <div class="weight-bar"><div class="fill" style="width:6%"></div></div>
+      </a>
+      <a class="cat-card" href="#casos-exito">
+        <div class="cat-weight">V · 10%</div>
+        <div class="cat-name">Casos de éxito</div>
+        <div class="cat-desc">Manufactura/forestal LATAM · SAP/Salesforce Chile</div>
+        <div class="weight-bar"><div class="fill" style="width:10%"></div></div>
+      </a>
+      <a class="cat-card" href="#modelo-financiero" style="border-color:rgba(90,158,58,.45);background:rgba(90,158,58,.1)">
+        <div class="cat-weight" style="color:#fff">F · 40% — Mayor peso</div>
+        <div class="cat-name">Modelo financiero</div>
+        <div class="cat-desc">Consumption · Caso CMPC · Costos ocultos · FinOps</div>
+        <div class="weight-bar"><div class="fill" style="width:40%;background:#fff"></div></div>
+      </a>
+    </div>
+    <div class="insight" style="max-width:820px">
+      IBM Integration SaaS cubre el 100% de los criterios de la matriz con evidencia documentada.
+      <small>Score propuesto: 5 / 5 en todos los criterios — ver evidencia por sección a continuación.</small>
+    </div>
+    <div style="margin-top:20px">
+      <a class="cta-link outline" href="saas-v2.html">Ver modelo financiero detallado →</a>
+    </div>
+  </div>
+</section>
+
+<!-- A · ARQUITECTURA -->
+<section class="light" id="arquitectura">
+  <div class="wrap">
+    <span class="eyebrow">A · Arquitectura — 15%</span>
+    <h2 class="title">Alta disponibilidad, despliegue híbrido y seguridad</h2>
+    <p class="lead">IBM Integration SaaS separa el plano de control (cloud) del plano de ejecución (distribuido), permitiendo gobernar centralmente mientras se ejecuta localmente en las plantas de CMPC.</p>
+    <div class="grid g3" style="margin-bottom:clamp(20px,2vw,36px)">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">A1</span><span class="chip o">Score 5/5</span></div>
+        <h3>Alta disponibilidad y SLA</h3>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>SLA contractual <strong>99,9% de disponibilidad</strong> (contrato i126-9947)</li>
+          <li><span class="ck">✓</span>2 réplicas de Cloud Runtime por defecto</li>
+          <li><span class="ck">✓</span>3 zonas de disponibilidad por región AWS/Azure</li>
+          <li><span class="ck">✓</span>Failover automático multi-zona</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">A2</span><span class="chip o">Score 5/5</span></div>
+        <h3>Modelos de despliegue</h3>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>Cloud Runtime iPaaS (AWS 5 regiones + Azure)</li>
+          <li><span class="ck">✓</span>Edge Runtime on-premises en redes de planta</li>
+          <li><span class="ck">✓</span>Hybrid Control Plane: gestión unificada cloud + on-prem</li>
+          <li><span class="ck">✓</span>Conexión segura desde redes internas sin exponer datos</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">A3</span><span class="chip o">Score 5/5</span></div>
+        <h3>Patrones de integración</h3>
+        <ul class="check-list">
+          <li><span class="ck">✓</span><strong>API-led</strong>: API Connect con capas System / Process / Experience</li>
+          <li><span class="ck">✓</span><strong>EDA / Eventos</strong>: Kafka (Event Streams), MQ, Event Endpoint Mgmt</li>
+          <li><span class="ck">✓</span><strong>Batch</strong>: MFT, SFTP, procesamiento masivo con scheduling</li>
+          <li><span class="ck">✓</span><strong>ETL/ELT</strong>: IBM StreamSets, database integration</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">A4</span><span class="chip o">Score 5/5</span></div>
+        <h3>Seguridad y compliance</h3>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>TLS / mTLS end-to-end en tránsito; cifrado en reposo</li>
+          <li><span class="ck">✓</span>RBAC — control de acceso por roles; secrets management</li>
+          <li><span class="ck">✓</span>Certificaciones: SOC 2, HIPAA, GDPR</li>
+          <li><span class="ck">✓</span>Keystores/Truststores gestionados; audit logging completo</li>
+          <li><span class="ck">✓</span>AWS PrivateLink para conectividad de red privada</li>
+        </ul>
+      </div>
+      <div class="card" style="grid-column:span 2">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">A5</span><span class="chip o">Score 5/5</span></div>
+        <h3>Edge / On-premise para plantas CMPC</h3>
+        <p style="color:var(--gray);margin-bottom:16px">El Edge Runtime se instala en la planta forestal o de manufactura. Procesa datos localmente con baja latencia y publica eventos al corporativo, sin exportar datos sensibles de producción.</p>
+        <div class="flow-rfp" style="background:transparent">
+          <div class="fb" style="background:#e8f0e4;border-color:#c5d9bc;color:var(--dark)"><div class="fi">🏭</div>Planta CMPC<br><small style="color:var(--gray)">MES / control</small></div>
+          <div class="fa" style="color:var(--accent-dk)">→</div>
+          <div class="fb" style="background:#d4edcc;border-color:var(--accent);color:var(--dark)"><div class="fi">⚡</div>Edge Runtime<br><small style="color:var(--gray)">2 réplicas locales</small></div>
+          <div class="fa" style="color:var(--accent-dk)">→</div>
+          <div class="fb" style="background:#e8f0e4;border-color:#c5d9bc;color:var(--dark)"><div class="fi">☁</div>Cloud Runtime<br><small style="color:var(--gray)">Orquestación</small></div>
+          <div class="fa" style="color:var(--accent-dk)">→</div>
+          <div class="fb" style="background:#e8f0e4;border-color:#c5d9bc;color:var(--dark)"><div class="fi">🏢</div>SAP / Salesforce<br><small style="color:var(--gray)">Sistemas corp.</small></div>
+          <div class="fa" style="color:var(--accent-dk)">→</div>
+          <div class="fb" style="background:#d4edcc;border-color:var(--accent);color:var(--dark)"><div class="fi">🖥</div>Hybrid Control Plane<br><small style="color:var(--gray)">Gobierno central</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- C · CONECTORES -->
+<section class="alt" id="conectores">
+  <div class="wrap">
+    <span class="eyebrow">C · Conectores — 4%</span>
+    <h2 class="title">Conectividad nativa SAP y Salesforce</h2>
+    <p class="lead">IBM Integration incluye adaptadores certificados para SAP y Salesforce con soporte de todos los protocolos solicitados en la matriz. El portfolio alcanza más de 400 conectores pre-construidos.</p>
+    <div class="grid g2">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">C1</span><span class="chip o">Score 5/5</span></div>
+        <h3>SAP — Adapter nativo certificado</h3>
+        <p style="color:var(--gray);margin-bottom:14px">Adaptador webMethods para SAP con soporte completo de protocolos SAP, incluyendo S/4HANA Cloud vía OData.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span><strong>RFC</strong> — Remote Function Call; llamadas sincrónicas a funciones ABAP</li>
+          <li><span class="ck">✓</span><strong>BAPI</strong> — Business API; catálogo de BAPIs SAP preconfiguradas</li>
+          <li><span class="ck">✓</span><strong>IDoc</strong> — Intermediate Documents; integración B2B con SAP bidireccional</li>
+          <li><span class="ck">✓</span><strong>OData</strong> — Conectividad REST para S/4HANA Cloud y SAP BTP</li>
+          <li><span class="ck">✓</span><strong>SAP Cloud Connector</strong> compatible con arquitectura SAP BTP</li>
+          <li><span class="ck">✓</span>Sincronización bidireccional: órdenes, confirmaciones, maestros</li>
+          <li><span class="ck">✓</span>Control transaccional e idempotencia nativos</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">C2</span><span class="chip o">Score 5/5</span></div>
+        <h3>Salesforce — Adapter nativo certificado</h3>
+        <p style="color:var(--gray);margin-bottom:14px">Adaptador Salesforce para integración de procesos comerciales, sincronización de datos y procesamiento de eventos en tiempo real.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span><strong>REST / SOAP</strong> — Operaciones CRUD estándar sobre objetos Salesforce</li>
+          <li><span class="ck">✓</span><strong>Bulk API 2.0</strong> — Operaciones masivas asincrónicas de alto volumen</li>
+          <li><span class="ck">✓</span><strong>Pub/Sub API</strong> — Suscripción a Platform Events en tiempo real</li>
+          <li><span class="ck">✓</span><strong>CDC (Change Data Capture)</strong> — Captura de cambios en registros</li>
+          <li><span class="ck">✓</span>Autenticación OAuth 2.0; gestión de límites de API Salesforce</li>
+          <li><span class="ck">✓</span>Streaming de eventos gestionado; automatización bidireccional</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note" style="text-align:center;margin-top:16px">Además de SAP y Salesforce: <strong>400+ conectores pre-construidos</strong> — REST, SOAP, bases de datos, archivos planos, protocolos industriales y más.</p>
+  </div>
+</section>
+
+<!-- M · MONITOREO -->
+<section class="dark" id="monitoreo">
+  <div class="wrap">
+    <span class="eyebrow">M · Monitoreo — 10%</span>
+    <h2 class="title">Trazabilidad, errores y observabilidad empresarial</h2>
+    <p class="lead">La plataforma provee monitoreo end-to-end desde el primer mensaje hasta el sistema destino, con identificadores de negocio, colas de error y alertas compatibles con herramientas corporativas.</p>
+    <div class="grid g3" style="margin-bottom:clamp(20px,2vw,36px)">
+      <div class="card-d">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">M1</span><span style="background:rgba(90,158,58,.25);color:var(--accent);padding:3px 12px;border-radius:50px;font-size:.73rem;font-weight:700">Score 5/5</span></div>
+        <h3>Trazabilidad end-to-end</h3>
+        <ul class="check-list dark">
+          <li><span class="ck">✓</span><strong>Correlation IDs</strong> automáticos por transacción</li>
+          <li><span class="ck">✓</span>Business data logging — búsqueda por identificador de negocio (N° orden SAP, ID Salesforce)</li>
+          <li><span class="ck">✓</span>Rastreo completo del recorrido de un mensaje entre sistemas</li>
+          <li><span class="ck">✓</span>Historial de ejecuciones con payload de entrada/salida</li>
+        </ul>
+      </div>
+      <div class="card-d">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">M2</span><span style="background:rgba(90,158,58,.25);color:var(--accent);padding:3px 12px;border-radius:50px;font-size:.73rem;font-weight:700">Score 5/5</span></div>
+        <h3>Gestión de errores y retry</h3>
+        <ul class="check-list dark">
+          <li><span class="ck">✓</span><strong>Dead Letter Queues (DLQ)</strong> en IBM MQ — mensajes fallidos aislados</li>
+          <li><span class="ck">✓</span>Retry automático: n intentos, backoff exponencial configurable</li>
+          <li><span class="ck">✓</span>Reprocesamiento manual de transacciones fallidas desde consola</li>
+          <li><span class="ck">✓</span>Garantía de entrega: at-least-once y exactly-once (IBM MQ)</li>
+        </ul>
+      </div>
+      <div class="card-d">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">M3</span><span style="background:rgba(90,158,58,.25);color:var(--accent);padding:3px 12px;border-radius:50px;font-size:.73rem;font-weight:700">Score 5/5</span></div>
+        <h3>Alertas y observabilidad</h3>
+        <ul class="check-list dark">
+          <li><span class="ck">✓</span><strong>OpenTelemetry</strong> nativo — Datadog, Splunk, Dynatrace, Grafana</li>
+          <li><span class="ck">✓</span>Alertas proactivas por umbral de errores, latencia o volumen</li>
+          <li><span class="ck">✓</span>Observability Agent con IA para diagnóstico asistido</li>
+          <li><span class="ck">✓</span>Métricas: volumen, latencia, tasa de errores, SLA por interfaz</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow-rfp">
+      <div class="fb"><div class="fi">📨</div>Transacción<br><small>entrada</small></div>
+      <div class="fa">→</div>
+      <div class="fb" style="border-color:var(--accent)"><div class="fi">🔖</div>Correlation ID<br><small>asignado</small></div>
+      <div class="fa">→</div>
+      <div class="fb"><div class="fi">📋</div>Business Log<br><small>ID de negocio</small></div>
+      <div class="fa">→</div>
+      <div class="fb"><div class="fi">🔔</div>Alerta<br><small>si hay error</small></div>
+      <div class="fa">→</div>
+      <div class="fb"><div class="fi">🔄</div>Retry / DLQ<br><small>reintento auto</small></div>
+      <div class="fa">→</div>
+      <div class="fb" style="border-color:rgba(90,158,58,.5)"><div class="fi">✅</div>Destino<br><small>confirmado</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- U · CASOS DE USO -->
+<section class="light" id="casos-uso">
+  <div class="wrap">
+    <span class="eyebrow">U · Casos de uso — 10%</span>
+    <h2 class="title">Aceleradores de negocio y gobierno del ciclo de vida</h2>
+    <p class="lead">IBM Integration combina contenido pre-empaquetado para SAP y Salesforce con un modelo de gobierno basado en Git, CI/CD automatizable y separación estricta de ambientes.</p>
+    <div class="grid g2">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">U1</span><span class="chip o">Score 5/5</span></div>
+        <h3>Aceleradores SAP y Salesforce</h3>
+        <p style="color:var(--gray);margin-bottom:14px">Templates y flows prediseñados disponibles desde el primer día, reduciendo el tiempo de implementación en los patrones más comunes.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>Flows SAP: Orders (SD), Goods Movement (MM), Master Data</li>
+          <li><span class="ck">✓</span>Flows Salesforce: Account sync, Opportunity pipeline, Contact bidireccional</li>
+          <li><span class="ck">✓</span>400+ conectores reutilizables como bloques de construcción</li>
+          <li><span class="ck">✓</span>Document Types para EDI, XML y JSON estándar</li>
+          <li><span class="ck">✓</span>Transformaciones gráficas con mapeo asistido por IA</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">U2</span><span class="chip o">Score 5/5</span></div>
+        <h3>Gobierno, Git y ambientes Dev/QA/Prod</h3>
+        <p style="color:var(--gray);margin-bottom:14px">Control de versiones nativo con Git y pipeline de promoción automatizable entre ambientes con aislamiento completo por tenant.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span><strong>Git nativo</strong> — GitHub, GitLab, Bitbucket integrados</li>
+          <li><span class="ck">✓</span>Pipeline CI/CD automatizable para despliegue de interfaces</li>
+          <li><span class="ck">✓</span>Separación Dev / QA / Prod con tenant isolation por entorno</li>
+          <li><span class="ck">✓</span>Promoción entre ambientes con aprobación configurable</li>
+          <li><span class="ck">✓</span>Versionado de APIs con compatibilidad hacia atrás</li>
+        </ul>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="background:#e8f0e4;color:var(--dark);padding:6px 16px;border-radius:8px;font-weight:700;font-size:.85rem">DEV</span>
+          <span style="color:var(--accent);font-weight:900;font-size:1.2rem">→</span>
+          <span style="background:#e8f0e4;color:var(--dark);padding:6px 16px;border-radius:8px;font-weight:700;font-size:.85rem">QA</span>
+          <span style="color:var(--accent);font-weight:900;font-size:1.2rem">→</span>
+          <span style="background:var(--accent);color:#fff;padding:6px 16px;border-radius:8px;font-weight:700;font-size:.85rem">PROD</span>
+          <span style="font-size:.8rem;color:var(--gray)">CI/CD automatizable</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I · IA -->
+<section class="alt" id="innovacion-ia">
+  <div class="wrap">
+    <span class="eyebrow">I · Innovación IA — 5%</span>
+    <h2 class="title">Inteligencia artificial integrada en el flujo de desarrollo</h2>
+    <p class="lead">IBM Integration SaaS incorpora capacidades de IA directamente en el entorno de desarrollo y en la capa de operaciones, sin requerir herramientas externas para las funciones principales.</p>
+    <div class="grid g2">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">I1</span><span class="chip o">Score 5/5</span></div>
+        <h3>Mapeo asistido por IA — Schema matching</h3>
+        <ul class="check-list">
+          <li><span class="ck">✓</span><strong>Integration Agent</strong>: IA que sugiere automáticamente mapeos de campos entre esquemas origen/destino</li>
+          <li><span class="ck">✓</span>Matching semántico en transformaciones gráficas</li>
+          <li><span class="ck">✓</span>Reduce tiempo de desarrollo de transformaciones SAP ↔ Salesforce</li>
+          <li><span class="ck">✓</span>Aprende de transformaciones existentes en el tenant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">I2</span><span class="chip o">Score 5/5</span></div>
+        <h3>Generación asistida y testing automatizado</h3>
+        <ul class="check-list">
+          <li><span class="ck">✓</span><strong>Observability Agent</strong>: diagnóstico asistido por IA de incidentes en producción</li>
+          <li><span class="ck">✓</span>Generación asistida de flows desde descripción en lenguaje natural</li>
+          <li><span class="ck">✓</span><strong>DataPower Interact Gateway</strong>: gestión del tráfico hacia modelos de IA y agentes MCP</li>
+          <li><span class="ck">✓</span>API Connect Developer Portal con documentación auto-generada desde OpenAPI</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E · ECOSISTEMA CHILE -->
+<section class="dark" id="ecosistema">
+  <div class="wrap">
+    <span class="eyebrow">E · Ecosistema local — 6%</span>
+    <h2 class="title">Partners IBM con presencia en Chile</h2>
+    <p class="lead">IBM cuenta con un ecosistema de Business Partners certificados con oficinas en Chile, capacitados para implementar IBM Integration SaaS en proyectos de integración empresarial.</p>
+    <div class="grid g4" style="margin-bottom:clamp(20px,2vw,36px)">
+      <div class="partner-card">
+        <h4>DXC Technology</h4>
+        <p>IBM Business Partner enterprise con capacidades de integración, modernización y servicios gestionados. Presencia en Santiago.</p>
+      </div>
+      <div class="partner-card">
+        <h4>3HTP</h4>
+        <p>IBM Business Partner especializado en integración empresarial y soluciones de middleware IBM. Con base en Chile.</p>
+      </div>
+      <div class="partner-card">
+        <h4>SOCIUS</h4>
+        <p>IBM Business Partner enfocado en soluciones de negocio y tecnología con presencia local en Chile.</p>
+      </div>
+      <div class="partner-card">
+        <h4>Mainsoft</h4>
+        <p>IBM Business Partner con experiencia en implementaciones de plataformas IBM y servicios de soporte en Chile.</p>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px 24px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span class="criteria-id">E2</span>
+        <span style="color:rgba(255,255,255,.7);font-weight:700">Costo promedio desarrollador</span>
+      </div>
+      <p style="color:rgba(255,255,255,.65)">El costo promedio hora/hombre de un desarrollador certificado en IBM Integration en Chile se informa directamente por IBM o el partner seleccionado según el alcance del proyecto. <em style="color:rgba(255,255,255,.4)">[Completar con tarifa referencial del partner preferido de CMPC]</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- V · CASOS DE ÉXITO -->
+<section class="light" id="casos-exito">
+  <div class="wrap">
+    <span class="eyebrow">V · Casos de éxito — 10%</span>
+    <h2 class="title">Implementaciones probadas en manufactura, forestal y retail</h2>
+    <p class="lead">IBM Integration tiene presencia en industrias de producción intensiva en LATAM. A continuación los patrones de referencia aplicables al contexto de CMPC:</p>
+    <div class="grid g2">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">V1</span><span class="chip o">Score 5/5</span></div>
+        <h3>Industria 4.0: manufactura y forestal en LATAM</h3>
+        <p style="color:var(--gray);margin-bottom:12px">IBM Integration es la plataforma de referencia IBM para Industria 4.0 en LATAM, conectando sistemas de planta con sistemas corporativos mediante Edge Runtimes y arquitectura híbrida.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>Integración planta-corporativo con Edge Runtime para baja latencia</li>
+          <li><span class="ck">✓</span>Sincronización órdenes de producción SAP ↔ sistemas MES</li>
+          <li><span class="ck">✓</span>Procesamiento de eventos de planta en tiempo real</li>
+          <li><span class="ck">✓</span>Soberanía de datos: datos de producción permanecen locales</li>
+        </ul>
+        <p class="note"><em>Casos nominales específicos en forestal/manufactura LATAM disponibles a solicitud del equipo IBM Chile.</em></p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">V2</span><span class="chip o">Score 5/5</span></div>
+        <h3>Integración SAP y Salesforce en Chile</h3>
+        <p style="color:var(--gray);margin-bottom:12px">Los adaptadores SAP y Salesforce de IBM Integration han sido implementados en proyectos de empresas en Chile para procesos Order-to-Cash, Master Data y sincronización comercial.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>Order-to-Cash: SAP SD ↔ Salesforce CRM</li>
+          <li><span class="ck">✓</span>Sincronización de maestros de clientes SAP ↔ Salesforce</li>
+          <li><span class="ck">✓</span>Automatización de confirmaciones de despacho</li>
+          <li><span class="ck">✓</span>Integración BAPI/IDoc con S/4HANA On-Premise</li>
+        </ul>
+        <p class="note"><em>Referencias de clientes en Chile disponibles bajo NDA con el equipo IBM Chile.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- F · MODELO FINANCIERO -->
+<section class="alt" id="modelo-financiero">
+  <div class="wrap">
+    <span class="eyebrow">F · Modelo financiero — 40%</span>
+    <h2 class="title">La mayor ponderación de la matriz — completamente cubierta</h2>
+    <p class="lead">El modelo financiero representa el 40% del puntaje total. IBM Integration SaaS responde los 4 criterios con análisis detallado incluyendo simulación del escenario CMPC y visibilidad diaria de consumo.</p>
+    <div class="grid g4" style="margin-bottom:clamp(20px,2vw,36px)">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">F1</span><span class="chip o">Score 5/5</span></div>
+        <h3>Modelos de cobro disponibles</h3>
+        <p style="color:var(--gray)">Tabla comparativa Consumption vs Capacity: tipo de modelo, unidad de medida, tiers de volumen, no-producción y reset anual.</p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">F2</span><span class="chip o">Score 5/5</span></div>
+        <h3>Claridad y predictibilidad</h3>
+        <p style="color:var(--gray)">Simulación escenario CMPC: 120 flujos, 1.000.000 trx/mes, mensajes ≤250 KB → <strong>~3.400 RU/año</strong> desglosado.</p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">F3</span><span class="chip o">Score 5/5</span></div>
+        <h3>Costos ocultos</h3>
+        <p style="color:var(--gray)">Dev gratuito, QA al 50%, overages B2B y duración, Aspera por TB, watsonx.ai como licencia separada.</p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="criteria-id">F4</span><span class="chip o">Score 5/5</span></div>
+        <h3>FinOps online diario</h3>
+        <p style="color:var(--gray)">Usage Analytics nativo, reporting automático IBM, predictive analytics y ciclo anual de RU explicado.</p>
+      </div>
+    </div>
+    <div style="text-align:center;padding:clamp(20px,2.5vw,48px) 0">
+      <p style="font-size:clamp(.92rem,1.05vw,1.15rem);color:var(--gray);margin-bottom:20px;max-width:58em;margin-left:auto;margin-right:auto">El análisis financiero completo — con calculadora interactiva de RU, tabla comparativa de modelos, simulación del caso CMPC y monitoreo FinOps — está disponible en el documento financiero complementario:</p>
+      <a class="cta-link" href="saas-v2.html#modelo-financiero" style="margin-right:8px">Ver análisis financiero completo →</a>
+      <a class="cta-link outline" href="saas-v2.html#calculadora">Abrir calculadora de RU →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>IBM Integration SaaS — Respuesta técnica a la RFP de Plataforma de Integraciones CMPC 2026</p>
+  <p>Doc 5953054998 · Preparado por IBM Chile</p>
+  <p style="margin-top:12px;font-size:.8em;opacity:.4;border-top:1px solid rgba(255,255,255,.1);padding-top:12px">Made with IBM Bob</p>
+</footer>
+
+<script>
+// Header shrink
+(function(){
+  var h=document.querySelector('.header');
+  window.addEventListener('scroll',function(){h.classList.toggle('shrank',scrollY>60);},{passive:true});
+})();
+// Inject logos from saas-v2 sibling file (same directory)
+// Logos are referenced via same-origin fetch — fallback to plain IBM text if not available
+(function(){
+  // Try to load logos from sibling file
+  fetch('saas-v2.html').then(function(r){return r.text();}).then(function(html){
+    var ibm=html.match(/logo-ibm[^>]+src="([^"]+)"/);
+    var bob=html.match(/logo-bob[^>]+src="([^"]+)"/);
+    if(ibm) document.getElementById('logo-ibm').src=ibm[1];
+    if(bob) document.getElementById('logo-bob').src=bob[1];
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

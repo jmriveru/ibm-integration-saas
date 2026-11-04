@@ -1,0 +1,1378 @@
+?<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo se licencia IBM Integration SaaS</title>
+<style>
+:root{
+  /* CMPC Forest Palette */
+  --blue:#2d6a2d; --blue-dark:#1a3d1a; --accent:#5a9e3a; --accent-dk:#3a6b1e;
+  --forest-deep:#1c3d1c; --forest-mid:#3a6b35; --forest-light:#7fb069;
+  --wood:#8b5e3c; --wood-light:#c49a6c; --moss:#4a7a3a; --bark:#5c4033;
+  --dark:#111a0f; --gray:#4a5a42; --light:#f0f4ec; --white:#fafdf7;
+  --cream:#f5f0e8; --success:#3a8a2a; --danger:#c0392b; --warning:#d4a017;
+  --grad-1:linear-gradient(135deg,#3a6b1e 0%,#1a3d1a 100%);
+  --grad-2:linear-gradient(135deg,#5a9e3a 0%,#3a6b1e 100%);
+  --pad-x:clamp(24px,3.5vw,96px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:58px}
+body{font-family:'IBM Plex Sans','Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.5;color:var(--dark);background:var(--dark);padding-top:56px;font-size:clamp(14px,0.9vw,17px);overflow-x:hidden}
+
+/* ---------- Header ---------- */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;height:56px;background:rgba(10,10,10,.96);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad-x);border-bottom:1px solid rgba(255,255,255,.1);transition:height .25s ease,padding .25s ease}
+.header.shrank{height:44px}
+.header .logos{display:flex;align-items:center;gap:20px}
+.header .logo-ibm{height:24px;width:auto;filter:brightness(0) invert(1)}
+.header .logo-bob{height:32px;width:auto}
+.header nav{display:flex;gap:clamp(10px,1.4vw,28px);flex-wrap:nowrap}
+.header nav a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.3px;white-space:nowrap}
+.header nav a:hover{color:var(--accent)}
+
+/* ---------- Layout ---------- */
+section{padding:clamp(32px,4vw,72px) var(--pad-x);position:relative}
+.wrap{width:100%;max-width:1440px;margin:0 auto}
+.light{background:linear-gradient(180deg,var(--white) 0%,var(--light) 100%)}
+.alt{background:var(--light)}
+.dark{background:var(--dark);color:#fff}
+.eyebrow{display:inline-block;color:var(--accent);font-weight:700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+h2.title{font-size:clamp(1.6rem,2.2vw,2.6rem);font-weight:900;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+p.lead{font-size:clamp(.95rem,1.1vw,1.25rem);color:var(--gray);max-width:62em;margin-bottom:clamp(18px,2vw,36px)}
+.dark p.lead{color:rgba(255,255,255,.72)}
+.grid{display:grid;gap:clamp(12px,1.4vw,24px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.g-split{grid-template-columns:1.1fr 1fr}
+
+/* ---------- Cards ---------- */
+.card{background:linear-gradient(160deg,#fff 0%,#f3f6f4 100%);border-radius:18px;padding:clamp(20px,1.8vw,36px);border:none;position:relative;box-shadow:0 1px 2px rgba(10,40,25,.08),0 6px 14px rgba(10,40,25,.09),0 18px 40px rgba(10,40,25,.12),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 2px 4px rgba(10,40,25,.1),0 12px 24px rgba(10,40,25,.12),0 30px 60px rgba(10,40,25,.18),inset 0 1px 0 rgba(255,255,255,.9)}
+.card h3{font-size:clamp(1.1rem,1.35vw,1.6rem);font-weight:800;margin-bottom:10px;line-height:1.2}
+.card p,.card li{color:var(--gray);font-size:1em}
+.card ul{padding-left:1.1em}
+.card li{margin-bottom:6px}
+.card-d{background:linear-gradient(160deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.03) 100%);border:none;border-radius:18px;padding:clamp(20px,1.8vw,36px);box-shadow:0 2px 4px rgba(0,0,0,.4),0 12px 28px rgba(0,0,0,.45),0 30px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14);transition:transform .25s ease,box-shadow .25s ease}
+.card-d:hover{transform:translateY(-6px);box-shadow:0 4px 8px rgba(0,0,0,.45),0 18px 36px rgba(0,0,0,.5),0 40px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18)}
+.card-d h3{color:var(--accent);font-size:clamp(1.1rem,1.35vw,1.6rem);font-weight:800;margin-bottom:10px}
+.card-d p,.card-d li{color:rgba(255,255,255,.82)}
+.card-d ul{padding-left:1.1em}
+.card-d li{margin-bottom:6px}
+.chip{display:inline-block;padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:rgba(15,98,254,.12);color:var(--blue);margin-bottom:10px}
+.chip.o{background:rgba(45,190,96,.15);color:#0B6B3A}
+.insight{background:var(--grad-1);color:#fff;border-radius:18px;padding:clamp(20px,2vw,40px);margin-top:clamp(20px,2vw,40px);font-weight:700;font-size:clamp(1.05rem,1.4vw,1.7rem);line-height:1.35;box-shadow:0 16px 48px rgba(15,98,254,.28)}
+.insight small{display:block;font-weight:400;opacity:.85;font-size:.7em;margin-top:6px}
+.note{font-size:.85em;color:var(--gray);margin-top:14px}
+.dark .note{color:rgba(255,255,255,.6)}
+
+/* ---------- Hero ---------- */
+.hero{min-height:calc(100vh - 56px);background:var(--dark);color:#fff;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-15%;width:70%;height:140%;background:radial-gradient(circle,rgba(42,107,29,.38) 0%,transparent 70%)}
+.hero::after{content:'';position:absolute;bottom:-40%;left:-10%;width:55%;height:100%;background:radial-gradient(circle,rgba(90,158,58,.22) 0%,transparent 70%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(24px,3vw,72px);align-items:center}
+.badge{display:inline-block;background:rgba(45,190,96,.2);border:2px solid var(--accent);padding:6px 20px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(2.2rem,4.2vw,5.2rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:18px;background:linear-gradient(135deg,#fff 0%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{font-size:clamp(1rem,1.4vw,1.7rem);font-weight:300;opacity:.92;max-width:34em;margin-bottom:24px}
+.hero .quote{font-size:clamp(1rem,1.3vw,1.55rem);font-weight:700;padding:clamp(12px,1.2vw,24px);background:rgba(255,255,255,.06);border-left:6px solid var(--accent);border-radius:14px;max-width:36em}
+.pool{background:linear-gradient(160deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.03) 100%);border:none;box-shadow:0 2px 4px rgba(0,0,0,.4),0 12px 28px rgba(0,0,0,.45),0 30px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14);border-radius:20px;padding:clamp(16px,1.8vw,36px)}
+.pool .ptitle{text-align:center;font-weight:900;font-size:clamp(1.15rem,1.6vw,2rem);color:var(--accent);margin-bottom:6px}
+.pool .psub{text-align:center;opacity:.75;margin-bottom:22px;font-size:.95em}
+.pool .row{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.07);border-radius:14px;padding:14px 18px;margin-bottom:12px}
+.pool .row .n{flex:0 0 46px;height:46px;border-radius:50%;background:var(--grad-2);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem}
+.pool .row b{display:block;font-size:1.05em}
+.pool .row span{opacity:.75;font-size:.9em}
+.pool .arrow{text-align:center;font-size:1.6rem;color:var(--accent);line-height:1;margin:2px 0 8px}
+.pool .total{text-align:center;background:var(--grad-1);border-radius:14px;padding:16px;font-weight:800;font-size:1.15em}
+
+/* ---------- Capabilities / analogy ---------- */
+.cap{display:flex;gap:14px;align-items:flex-start}
+.cap .dot{flex:0 0 14px;height:14px;border-radius:50%;background:var(--accent);margin-top:7px}
+.cap b{display:block;font-size:1.05em}
+.cap span{color:var(--gray);font-size:.92em}
+.bagfig{margin-bottom:clamp(22px,2.4vw,46px)}
+.bagfig svg{display:block;width:100%;height:auto}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.6vw,30px)}
+.vs .box{border-radius:16px;padding:clamp(16px,1.6vw,30px)}
+.vs .a{background:#fff;border:none;box-shadow:0 2px 4px rgba(10,40,25,.08),0 8px 18px rgba(10,40,25,.1)}
+.vs .b{background:var(--grad-1);color:#fff;box-shadow:0 2px 4px rgba(0,29,108,.25),0 10px 24px rgba(0,29,108,.3)}
+.vs h4{font-size:1.15em;margin-bottom:8px}
+.vs ul{padding-left:1.1em}
+.vs li{margin-bottom:6px;font-size:.95em}
+.card .vs .b li,.card .vs .b h4{color:#fff}
+.g-split>.card,.g-split>.tbl-wrap{align-self:start}
+
+/* ---------- 3 pasos ---------- */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1.05fr;gap:clamp(10px,1.2vw,26px);align-items:stretch}
+.flow .op{align-self:center;font-size:clamp(1.8rem,2.4vw,3rem);font-weight:900;color:var(--accent)}
+.flow .step{background:linear-gradient(160deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.03) 100%);border:none;box-shadow:0 2px 4px rgba(0,0,0,.4),0 12px 28px rgba(0,0,0,.45),0 30px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14);border-radius:18px;padding:clamp(18px,1.8vw,34px)}
+.flow .step .num{display:inline-flex;width:44px;height:44px;border-radius:50%;background:var(--grad-2);align-items:center;justify-content:center;font-weight:900;margin-bottom:12px}
+.flow .step h3{font-size:clamp(1.1rem,1.4vw,1.7rem);margin-bottom:8px;font-weight:800}
+.flow .step p{color:rgba(255,255,255,.78);font-size:.95em}
+.flow .res{background:var(--grad-1);border:none;box-shadow:0 4px 8px rgba(0,0,0,.4),0 18px 40px rgba(15,98,254,.35);text-align:center;display:flex;flex-direction:column;justify-content:center}
+.flow .res .ru{font-size:clamp(2.4rem,3.6vw,4.6rem);font-weight:900;line-height:1}
+.example{margin-top:clamp(22px,2.4vw,46px);background:linear-gradient(160deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.03) 100%);border:none;box-shadow:0 2px 4px rgba(0,0,0,.4),0 12px 28px rgba(0,0,0,.45),0 30px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14);border-radius:18px;padding:clamp(18px,2vw,38px)}
+.example h3{color:var(--accent);margin-bottom:12px;font-size:clamp(1.1rem,1.4vw,1.7rem)}
+.eq{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:1.05em}
+.eq .t{background:rgba(255,255,255,.1);padding:10px 16px;border-radius:12px}
+.eq .t b{color:var(--accent)}
+.eq .s{font-weight:900;color:var(--accent);font-size:1.4em}
+.eq .r{background:var(--grad-1);padding:10px 20px;border-radius:12px;font-weight:900}
+
+/* ---------- Tiles de instancias ---------- */
+.tile{background:linear-gradient(160deg,#fff 0%,#f3f6f4 100%);border-radius:16px;padding:clamp(16px,1.4vw,28px);border:none;box-shadow:0 1px 2px rgba(10,40,25,.08),0 6px 14px rgba(10,40,25,.09),0 16px 34px rgba(10,40,25,.12),inset 0 1px 0 rgba(255,255,255,.9);display:flex;flex-direction:column;gap:4px;transition:transform .25s ease,box-shadow .25s ease}
+.tile:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(10,40,25,.1),0 12px 24px rgba(10,40,25,.12),0 26px 52px rgba(10,40,25,.18),inset 0 1px 0 rgba(255,255,255,.9)}
+.tile .nm{font-weight:700;font-size:1.02em;min-height:2.6em}
+.tile .ru{font-size:clamp(1.8rem,2.4vw,3rem);font-weight:900;color:var(--blue);line-height:1}
+.tile .ru small{font-size:.38em;color:var(--gray);font-weight:600}
+.tile .yr{color:var(--gray);font-size:.88em}
+.tile.free{border-left-color:var(--success)}
+.tile.free .ru{color:var(--success)}
+
+/* ---------- Metrics ---------- */
+.feat-grid{grid-template-columns:repeat(2,1fr);margin-bottom:clamp(28px,3vw,60px)}
+.card.feat{padding:0;overflow:hidden}
+.feat-head{background:var(--grad-2);color:#fff;padding:clamp(14px,1.2vw,22px) clamp(16px,1.6vw,28px)}
+.feat-head .tag{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.92}
+.card.feat .feat-head h3{font-size:clamp(1.15rem,1.5vw,1.8rem);font-weight:800;line-height:1.1;margin:4px 0;color:#fff}
+.card.feat .feat-head p{color:rgba(255,255,255,.88);margin:0;font-size:clamp(.88rem,1vw,1.05rem)}
+.feat-body{padding:clamp(14px,1.2vw,22px) clamp(16px,1.6vw,28px)}
+.feat-body ul{padding-left:1.1em;margin-bottom:20px}
+.feat-body li{margin-bottom:6px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.stat{background:#e8f0e4;border-radius:14px;padding:clamp(14px,1.4vw,26px);box-shadow:inset 0 2px 6px rgba(30,60,20,.12)}
+.stat .sv{font-size:clamp(2rem,3.2vw,4rem);font-weight:900;line-height:1;color:var(--blue)}
+.stat .sl{color:var(--gray);font-size:.95em;margin-top:8px}
+.stat .sl b{color:var(--dark)}
+.feat .ex{background:linear-gradient(135deg,rgba(45,190,96,.16),rgba(45,190,96,.05));border-radius:14px;padding:16px 20px;margin-top:20px;color:var(--dark)}
+.feat .ex b{color:var(--accent-dk)}
+h3.sub-h{font-size:clamp(1.2rem,1.6vw,2rem);font-weight:800;margin:0 0 18px}
+.g-ex{grid-template-columns:1.7fr 1fr;align-items:center}
+.g-ex svg{display:block;width:100%;height:auto}
+.eqrow{display:flex;justify-content:space-between;align-items:center;gap:16px;background:rgba(255,255,255,.07);border-radius:14px;padding:16px 20px;margin-bottom:12px}
+.eqrow b{color:var(--accent);font-size:1.4em;white-space:nowrap}
+.eqrow small{opacity:.7;font-size:.85em}
+.eqrow.total{background:var(--grad-1)}
+.eqrow.total b{color:#fff}
+.metric h3{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.metric details{margin-bottom:12px}
+.metric details summary{list-style:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:.78rem;font-weight:700;color:var(--accent-dk);letter-spacing:.3px;user-select:none;width:fit-content}
+.metric details summary::-webkit-details-marker{display:none}
+.metric details summary::before{content:'ℹ';display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--accent-dk);color:#fff;font-size:.72rem;font-weight:900;flex-shrink:0;transition:background .15s}
+.metric details[open] summary::before{background:var(--accent)}
+.metric details summary span{transition:color .15s}
+.metric details[open] summary span{color:var(--accent)}
+.metric .what{margin-top:8px;font-size:.92em;padding:10px 12px;background:rgba(58,107,30,.07);border-left:3px solid var(--accent-dk);border-radius:0 6px 6px 0}
+.metric .what b{color:var(--dark)}
+table.t{width:100%;border-collapse:collapse;font-size:.88em;margin-top:6px}
+table.t th{background:var(--dark);color:#fff;text-align:left;padding:8px 10px;font-weight:700;font-size:.85em}
+table.t td{padding:8px 10px;border-bottom:1px solid #e5e5e5}
+table.t td.ru-c{font-weight:900;color:var(--blue);white-space:nowrap}
+table.t.wide{font-size:1em}
+table.t.wide th{padding:14px 16px}
+table.t.wide td{padding:14px 16px}
+.tbl-wrap{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(10,40,25,.08),0 6px 14px rgba(10,40,25,.09),0 18px 40px rgba(10,40,25,.12),inset 0 1px 0 rgba(255,255,255,.9)}
+
+/* ---------- Calculadora ---------- */
+.calc{display:grid;grid-template-columns:1.1fr 1.4fr .8fr;gap:clamp(16px,1.8vw,36px);align-items:start}
+.panel{background:linear-gradient(160deg,#fff 0%,#f3f6f4 100%);border-radius:18px;padding:clamp(18px,1.6vw,32px);box-shadow:0 1px 2px rgba(10,40,25,.08),0 6px 14px rgba(10,40,25,.09),0 18px 40px rgba(10,40,25,.12),inset 0 1px 0 rgba(255,255,255,.9)}
+.panel h3{font-size:1.2em;font-weight:800;margin-bottom:12px;color:var(--blue)}
+.panel .r{display:grid;grid-template-columns:1fr 150px;gap:10px;align-items:center;margin-bottom:8px}
+.panel .r label{font-size:.9em}
+.panel .m{display:grid;grid-template-columns:minmax(0,1fr) repeat(3,92px);gap:8px;align-items:center;margin-bottom:8px}
+.panel .m.hd,.panel .u.hd{font-weight:700;font-size:.68em;white-space:nowrap;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;text-align:center;align-items:end}
+.panel .m.hd span:first-child,.panel .u.hd span:first-child{text-align:left}
+.panel .m label{font-size:.9em;line-height:1.25}
+.panel .m label small{display:block;color:#888;font-size:.85em}
+.panel .u{display:grid;grid-template-columns:minmax(0,1.1fr) repeat(3,minmax(0,1fr));gap:8px;align-items:center;margin-bottom:8px}
+.panel .u label{font-size:.9em;line-height:1.25}
+.panel input.num{width:100%;min-width:0;padding:8px 8px;border:2px solid #d0d0d0;border-radius:8px;font:inherit;font-size:.9em;font-weight:700;color:var(--dark);text-align:right;background:#fff}
+.panel input.num:focus{outline:none;border-color:var(--blue)}
+.panel .chk{display:flex;gap:8px;align-items:flex-start;font-size:.85em;color:var(--gray);margin:2px 0 12px}
+.qabar{display:flex;align-items:center;gap:14px;margin:0 0 18px;font-size:.9em;color:var(--gray)}
+.qabtn{padding:10px 18px;border:2px solid var(--accent-dk);border-radius:10px;background:#fff;color:var(--accent-dk);font:inherit;font-weight:700;cursor:pointer;box-shadow:0 2px 6px rgba(10,40,25,.12)}
+.qabtn:hover{background:#eaf7ef}
+.calc.noqa .q{display:none!important}
+.calc.noqa .panel .m{grid-template-columns:minmax(0,1fr) repeat(2,92px)}
+.calc.noqa .panel .u{grid-template-columns:minmax(0,1.1fr) repeat(2,minmax(0,1fr))}
+.panel hr{border:none;border-top:1px solid #e5e5e5;margin:14px 0}
+.panel .more{display:block;width:100%;margin:4px 0 12px;padding:10px 14px;border:2px dashed var(--accent-dk);border-radius:10px;background:#fff;color:var(--accent-dk);font:inherit;font-size:.9em;font-weight:700;cursor:pointer}
+.panel .more:hover{background:#eaf7ef}
+.result{position:sticky;top:90px;background:var(--grad-1);color:#fff;border-radius:18px;padding:clamp(20px,2vw,38px);box-shadow:0 16px 48px rgba(15,98,254,.3)}
+.result .lbl{opacity:.8;font-size:.85em;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.result .tot{font-size:clamp(2.6rem,4vw,5.4rem);font-weight:900;line-height:1.05;margin:4px 0 2px}
+.result .mo{opacity:.85;margin-bottom:18px}
+.bar{margin-bottom:12px}
+.bar .bl{display:flex;justify-content:space-between;font-size:.9em;margin-bottom:4px}
+.bar .tr{height:10px;background:rgba(255,255,255,.18);border-radius:6px;overflow:hidden}
+.bar .fi{height:100%;background:var(--accent);border-radius:6px;width:0;transition:width .3s}
+.result .disc{font-size:.78em;opacity:.75;margin-top:14px;line-height:1.4}
+
+/* ---------- Dependencias ---------- */
+.ai{align-items:stretch}
+.ai .card svg{display:block;width:100%;height:auto}
+.ai-side{display:flex;flex-direction:column;gap:clamp(16px,1.8vw,36px)}
+.ai-side .card.ex2{background:linear-gradient(135deg,rgba(45,190,96,.18),rgba(45,190,96,.06));color:var(--dark)}
+.ai-side .card.ex2 b{color:var(--accent-dk)}
+.chain{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 18px}
+.chain .n{background:var(--grad-1);color:#fff;padding:10px 18px;border-radius:12px;font-weight:700}
+.chain .n.o{background:var(--grad-2)}
+.chain .ar{font-weight:900;color:var(--accent);font-size:1.3em}
+
+/* ---------- SLA ---------- */
+.ok{color:var(--success);font-weight:800}
+
+/* ---------- Footer ---------- */
+.cta{background:linear-gradient(135deg,var(--blue) 0%,var(--dark) 100%);color:#fff}
+.cta .links{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,30px);margin-top:20px}
+.cta .links a{display:block;background:rgba(255,255,255,.1);border:none;box-shadow:0 2px 4px rgba(0,0,0,.25),0 12px 28px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.2);border-radius:14px;padding:18px 22px;color:#fff;text-decoration:none;font-weight:700}
+.cta .links a small{display:block;font-weight:400;opacity:.8;margin-top:4px}
+.cta .links a:hover{background:rgba(45,190,96,.35)}
+footer{background:#0a140a;color:#fff;padding:40px var(--pad-x);text-align:center;font-size:.9em}
+footer p{opacity:.65;margin-bottom:8px}
+
+/* ---------- CMPC Illustrations ---------- */
+.forest-banner{width:100%;overflow:hidden;line-height:0;background:var(--dark)}
+.forest-banner svg{display:block;width:100%;height:auto}
+.forest-divider{width:100%;overflow:hidden;line-height:0;margin:-2px 0}
+.forest-divider svg{display:block;width:100%;height:auto}
+.hero-forest{position:absolute;bottom:0;left:0;right:0;z-index:1;pointer-events:none;line-height:0}
+.hero-forest svg{display:block;width:100%;height:auto}
+.hero .wrap{position:relative;z-index:2}
+.cmpc-sidebar-art{position:absolute;right:0;top:50%;transform:translateY(-50%);opacity:.12;pointer-events:none;z-index:0}
+.section-art{position:absolute;right:var(--pad-x);top:50%;transform:translateY(-50%);opacity:.06;pointer-events:none;z-index:0;width:280px}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1280px){
+  .g4,.g5{grid-template-columns:repeat(2,1fr)}
+  .calc{grid-template-columns:1fr 1fr}
+  .result{grid-column:1/-1;position:static}
+  .flow{grid-template-columns:1fr}
+  .flow .op{text-align:center}
+  .header nav{display:none}
+}
+@media (max-width:900px){
+  .hero .wrap,.g2,.g3,.g-split,.calc,.vs,.cta .links,.feat-grid,.g-ex{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .g4,.g5{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="logos">
+    <img class="logo-ibm" src="data:image/webp;base64,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m8gRx2UHDcYG33AwFjpiXrzLXsQe9Ax9GDzitGHmgi/xDG/BRxz3tLk43S9sCeNHzOcUGYtwDa/wBSNI3GaLreAnvUJrDIlTqtqK9T6hMoNIHM4IWgq+wSN8CiMxn11oKT7xCC2AJL6jhqGY5w+uZCSJG1SzE7zNG3yOJXHchXbiY18QaAYmMc8sthLpAU9wFcNJvHqvkeAJnuB5QInn7DESS/xAsDGixMeusBGNg17gG4aUOLmbieDxXuBBUIkjT5uI13xAcQNUiXlmyECcEvIAXRlX4kUx9oGv9QCZyBIv2GUfzpW/mHrQEs/52TzULxG/0Ywt8duVrQN/JX5Z6BKnfGsdVkjfiSQjs0BpP1YedFtv39+8oUJw51O7ekaZ8E1cr1jjlULU//zP//zP//zP/1H/8z//8z//8z//G//zP//zP//zP//zf9T//M///M///M///M///M///M///M///B/1P//zP//zP//zP//zP//zP//zP//zf9T//M///M///M///M///M///M///M///M///M///M///M///M//Uf/zP//zP//zf59yhdKeXB4MzTqZ4v1l5digLL37qPSMyVK8O/8VWGk/Wx6M4JMqPl6OdWK9e7RUeDqw4l2dQ+HtEo2HV9TOoXgsix9ReXPUzggGsxrmaryQJKXzVzSLszUetlM5x+PgrNr7NN6vKucxhrP4F4339qnC+QDQit+s8PCSuqkUAbR4ucb7St1cwohWZKvC841XNqdDWrxI4WF9VfNzLKbFVyi8o6qmD4NaixSe66XQvIVqha/Xd1hXZjaHUS3OUnilZOZphrXCP+o7Zw2RmY9r8V36Dp+UmJ0MbEUO6Lu2EvMJssWz9B3fIDBzoK3IDfruGXmpzNAWn6vv5snLc+BWrc3qjseJS0twi2fqu4+lpTqjWwk/qLv0gLC8Am/xx+qOJwhLc3zraKG6WyIr/Rnf4kvVXeOgqLyKcDULaTseLymBtxEunqzuXpOUbxniaqfuTgkJynSMi8drOx4jJ8EmINdsdbdcTqoxyBX+XtvVjRGT11EunqntuJuUlKXCXAmVtN0KKbmcYS5+RtslFQjJ/UBX42Jlx6NkpLgB0MWjtd0iGfmOka4ztV3CXhGZBXXxj8qOe0hIST2s63ltd5aEdGOsq06usovbJyArwC5+TNnxSPkoqo12zQko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" alt="IBM">
+    <img class="logo-bob" src="data:image/webp;base64,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" alt="IBM Bob">
+  </div>
+  <nav>
+    <a href="#que-es">Qué es</a>
+    <a href="#modelo">Modelo RU</a>
+    <a href="#instancias">Instancias</a>
+    <a href="#uso">Uso</a>
+    <a href="#hybrid">Hybrid</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#servicio">SLA</a>
+    <a href="#recursos">Recursos</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div style="position:relative">
+      <div class="badge">Modelo de licenciamiento · Explicado simple</div>
+      <!-- CMPC pine seedling watermark - positioned top right of text column -->
+      <div style="position:absolute;top:-20px;right:-10px;width:clamp(80px,10vw,140px);opacity:.18;pointer-events:none;z-index:0">
+        <svg viewBox="0 0 140 180" xmlns="http://www.w3.org/2000/svg">
+          <!-- Hands cupping soil -->
+          <ellipse cx="70" cy="155" rx="58" ry="22" fill="#c49a6c"/>
+          <!-- Left palm -->
+          <path d="M15,135 Q10,160 30,170 Q50,178 70,175" fill="#c49a6c" stroke="#a07850" stroke-width="1"/>
+          <!-- Right palm -->
+          <path d="M125,135 Q130,160 110,170 Q90,178 70,175" fill="#c49a6c" stroke="#a07850" stroke-width="1"/>
+          <!-- Soil/moss mound -->
+          <ellipse cx="70" cy="148" rx="45" ry="18" fill="#3a2a1a"/>
+          <ellipse cx="58" cy="142" rx="15" ry="8" fill="#4a7a3a" opacity=".7"/>
+          <ellipse cx="82" cy="144" rx="12" ry="7" fill="#4a7a3a" opacity=".6"/>
+          <!-- Pine cone -->
+          <ellipse cx="70" cy="138" rx="10" ry="14" fill="#8b5e3c"/>
+          <g fill="#a07850">
+            <ellipse cx="70" cy="132" rx="9" ry="4"/>
+            <ellipse cx="70" cy="127" rx="8" ry="4"/>
+            <ellipse cx="70" cy="122" rx="7" ry="3"/>
+          </g>
+          <!-- Pine stem -->
+          <rect x="68" y="90" width="4" height="38" fill="#5c4033"/>
+          <!-- Pine needles -->
+          <g fill="none" stroke="#5a9e3a" stroke-width="1.5" stroke-linecap="round">
+            <line x1="70" y1="118" x2="52" y2="105"/>
+            <line x1="70" y1="118" x2="88" y2="105"/>
+            <line x1="70" y1="108" x2="55" y2="95"/>
+            <line x1="70" y1="108" x2="85" y2="95"/>
+            <line x1="70" y1="98" x2="58" y2="85"/>
+            <line x1="70" y1="98" x2="82" y2="85"/>
+            <line x1="70" y1="90" x2="62" y2="78"/>
+            <line x1="70" y1="90" x2="78" y2="78"/>
+          </g>
+          <!-- Tip bud -->
+          <ellipse cx="70" cy="76" rx="5" ry="8" fill="#7fb069"/>
+        </svg>
+      </div>
+      <h1>Cómo se licencia IBM Integration SaaS</h1>
+      <p class="sub">Una plataforma de integración totalmente gestionada por IBM. Usted compra una bolsa de créditos y la usa en las capacidades que necesite.</p>
+      <div class="quote">Una sola bolsa de <u>Resource Units (RU)</u>: se consumen por lo que usted activa y por lo que procesa.</div>
+    </div>
+    <div class="pool">
+      <div class="ptitle">Su bolsa de RU</div>
+      <div class="psub">Definido en su Transaction Document · cubre 12 meses de uso</div>
+      <div class="row"><div class="n">1</div><div><b>Instancias</b><span>Lo que usted activa (consumo mensual por instancia)</span></div></div>
+      <div class="row"><div class="n">2</div><div><b>Uso</b><span>Lo que fluye por la plataforma (transacciones, llamadas, eventos)</span></div></div>
+      <div class="row"><div class="n">3</div><div><b>Conexiones</b><span>Runtimes remotos y redes privadas</span></div></div>
+      <div class="arrow">▼</div>
+      <div class="total">Todo se consume de la misma bolsa de RU</div>
+    </div>
+  </div>
+  <!-- CMPC Forest illustration at hero bottom -->
+  <div class="hero-forest">
+    <svg viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="forestGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1c3d1c" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#1c3d1c" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <!-- Ground -->
+      <rect x="0" y="140" width="1440" height="40" fill="#111a0f"/>
+      <!-- Far background trees - light -->
+      <g fill="#2a4e28" opacity=".6">
+        <polygon points="60,140 80,80 100,140"/>
+        <polygon points="150,140 175,60 200,140"/>
+        <polygon points="240,140 260,90 280,140"/>
+        <polygon points="320,140 345,55 370,140"/>
+        <polygon points="400,140 420,75 440,140"/>
+        <polygon points="480,140 505,50 530,140"/>
+        <polygon points="560,140 580,85 600,140"/>
+        <polygon points="640,140 665,60 690,140"/>
+        <polygon points="720,140 740,80 760,140"/>
+        <polygon points="800,140 825,55 850,140"/>
+        <polygon points="880,140 900,70 920,140"/>
+        <polygon points="960,140 985,45 1010,140"/>
+        <polygon points="1040,140 1060,80 1080,140"/>
+        <polygon points="1120,140 1145,60 1170,140"/>
+        <polygon points="1200,140 1220,75 1240,140"/>
+        <polygon points="1280,140 1305,50 1330,140"/>
+        <polygon points="1360,140 1380,85 1400,140"/>
+      </g>
+      <!-- Mid trees -->
+      <g fill="#3a6b35" opacity=".8">
+        <polygon points="0,140 30,70 60,140"/>
+        <polygon points="90,140 130,40 170,140"/>
+        <polygon points="200,140 235,65 270,140"/>
+        <polygon points="290,140 330,35 370,140"/>
+        <polygon points="380,140 415,55 450,140"/>
+        <polygon points="460,140 500,30 540,140"/>
+        <polygon points="550,140 585,50 620,140"/>
+        <polygon points="630,140 670,25 710,140"/>
+        <polygon points="720,140 755,50 790,140"/>
+        <polygon points="800,140 840,30 880,140"/>
+        <polygon points="890,140 925,45 960,140"/>
+        <polygon points="970,140 1010,20 1050,140"/>
+        <polygon points="1060,140 1095,45 1130,140"/>
+        <polygon points="1140,140 1180,30 1220,140"/>
+        <polygon points="1230,140 1265,50 1300,140"/>
+        <polygon points="1310,140 1350,25 1390,140"/>
+        <polygon points="1390,140 1420,55 1450,140"/>
+      </g>
+      <!-- Front trees - dark and detailed -->
+      <g fill="#1c3d1c">
+        <polygon points="0,140 50,20 100,140"/>
+        <polygon points="80,140 120,50 160,140"/>
+        <polygon points="160,140 210,10 260,140"/>
+        <polygon points="250,140 290,40 330,140"/>
+        <polygon points="330,140 380,5 430,140"/>
+        <polygon points="420,140 460,30 500,140"/>
+        <polygon points="490,140 540,0 590,140"/>
+        <polygon points="580,140 620,25 660,140"/>
+        <polygon points="650,140 700,5 750,140"/>
+        <polygon points="740,140 780,30 820,140"/>
+        <polygon points="810,140 860,0 910,140"/>
+        <polygon points="900,140 940,20 980,140"/>
+        <polygon points="970,140 1020,5 1070,140"/>
+        <polygon points="1060,140 1100,25 1140,140"/>
+        <polygon points="1130,140 1180,0 1230,140"/>
+        <polygon points="1220,140 1260,20 1300,140"/>
+        <polygon points="1290,140 1340,5 1390,140"/>
+        <polygon points="1380,140 1410,30 1440,140"/>
+      </g>
+      <!-- Trunk details on front trees -->
+      <g fill="#111a0f">
+        <rect x="46" y="120" width="8" height="20"/>
+        <rect x="206" y="118" width="8" height="22"/>
+        <rect x="376" y="115" width="8" height="25"/>
+        <rect x="536" y="118" width="8" height="22"/>
+        <rect x="696" y="115" width="8" height="25"/>
+        <rect x="856" y="115" width="8" height="25"/>
+        <rect x="1016" y="115" width="8" height="25"/>
+        <rect x="1176" y="115" width="8" height="25"/>
+        <rect x="1336" y="118" width="8" height="22"/>
+      </g>
+      <!-- Ground fade -->
+      <rect x="0" y="130" width="1440" height="50" fill="url(#forestGrad)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ FOREST DIVIDER after hero ============ -->
+<div class="forest-divider" style="background:var(--dark)">
+  <svg viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="1440" height="30" fill="#111a0f"/>
+    <rect x="0" y="25" width="1440" height="5" fill="#f0f4ec"/>
+  </svg>
+</div>
+
+<!-- ============ QUÉ ES ============ -->
+<section class="light" id="que-es">
+  <div class="wrap">
+    <span class="eyebrow">01 · Qué se contrata</span>
+    <h2 class="title">Una plataforma, muchas capacidades</h2>
+    <p class="lead">IBM Integration SaaS es una plataforma de integración como servicio (iPaaS). Usted no administra infraestructura: IBM lo hace. Conecta aplicaciones, automatiza flujos, gestiona APIs, intercambia documentos B2B, transfiere archivos y maneja eventos desde una sola nube.</p>
+
+
+    <div class="grid g-split">
+      <div>
+        <div class="grid g2">
+          <div class="card"><div class="cap"><div class="dot"></div><div><b>Application Integration</b><span>Sincroniza sistemas y automatiza flujos entre nube y on-premises.</span></div></div></div>
+          <div class="card"><div class="cap"><div class="dot"></div><div><b>API Management</b><span>Protege, publica y gobierna APIs de toda la empresa.</span></div></div></div>
+          <div class="card"><div class="cap"><div class="dot"></div><div><b>B2B</b><span>Intercambia documentos (EDI, XML, CSV) con sus socios comerciales.</span></div></div></div>
+          <div class="card"><div class="cap"><div class="dot"></div><div><b>Value-Added Network (VAN)</b><span>Red de valor agregado para el intercambio de documentos B2B.</span></div></div></div>
+          <div class="card"><div class="cap"><div class="dot"></div><div><b>Managed File Transfer</b><span>Transferencia segura y auditable de archivos y conjuntos de datos.</span></div></div></div>
+          <div class="card"><div class="cap"><div class="dot"></div><div><b>Event Endpoint Management</b><span>Publica y gobierna eventos como APIs asíncronas.</span></div></div></div>
+          <div class="card o" style="grid-column:1/-1"><div class="cap"><div class="dot"></div><div><b>Hybrid Control Plane</b><span>Un punto único de monitoreo y analítica, incluso para integraciones que corren on-premises o en otras nubes.</span></div></div></div>
+        </div>
+      </div>
+      <div class="card o">
+        <span class="chip o">Modelo mental</span>
+        <h3>Piénselo como una caja de herramientas</h3>
+        <div class="vs">
+          <div class="box a">
+            <h4>Una caja de herramientas</h4>
+            <ul>
+              <li>Usted compra la caja completa, no cada herramienta.</li>
+              <li>Usa el martillo, el taladro o el destornillador según la tarea.</li>
+              <li>Tiene a mano también herramientas que quizá no use.</li>
+            </ul>
+          </div>
+          <div class="box b">
+            <h4>IBM Integration</h4>
+            <ul>
+              <li>Usted compra la plataforma, no cada producto.</li>
+              <li>Usa integración, APIs o B2B según su necesidad.</li>
+              <li>Tiene derecho también a capacidades que quizá no use.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">La analogía ayuda a entender el "paquete", pero no aplica a cómo se consume: en IBM Integration el consumo de RU depende de lo que usted realmente use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CMPC FOREST STRIP ============ -->
+<div style="background:var(--dark);overflow:hidden;line-height:0;padding:0">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:120px">
+    <!-- Sky -->
+    <rect width="1440" height="120" fill="#0d1f0d"/>
+    <!-- Stars/dots -->
+    <g fill="#7fb069" opacity=".4">
+      <circle cx="100" cy="20" r="1.5"/><circle cx="250" cy="12" r="1"/><circle cx="400" cy="18" r="1.5"/>
+      <circle cx="580" cy="8" r="1"/><circle cx="720" cy="22" r="1.5"/><circle cx="900" cy="10" r="1"/>
+      <circle cx="1050" cy="18" r="1.5"/><circle cx="1200" cy="6" r="1"/><circle cx="1380" cy="20" r="1.5"/>
+    </g>
+    <!-- Forest silhouette layers -->
+    <g fill="#1c3d1c">
+      <polygon points="0,120 40,55 80,120"/>
+      <polygon points="60,120 100,35 140,120"/>
+      <polygon points="130,120 170,50 210,120"/>
+      <polygon points="200,120 245,28 290,120"/>
+      <polygon points="280,120 320,48 360,120"/>
+      <polygon points="350,120 395,20 440,120"/>
+      <polygon points="430,120 470,42 510,120"/>
+      <polygon points="500,120 545,15 590,120"/>
+      <polygon points="580,120 620,38 660,120"/>
+      <polygon points="650,120 695,10 740,120"/>
+      <polygon points="730,120 770,35 810,120"/>
+      <polygon points="800,120 845,12 890,120"/>
+      <polygon points="880,120 920,38 960,120"/>
+      <polygon points="950,120 995,8 1040,120"/>
+      <polygon points="1030,120 1070,32 1110,120"/>
+      <polygon points="1100,120 1145,15 1190,120"/>
+      <polygon points="1180,120 1220,40 1260,120"/>
+      <polygon points="1250,120 1295,10 1340,120"/>
+      <polygon points="1330,120 1370,35 1410,120"/>
+      <polygon points="1400,120 1430,50 1460,120"/>
+    </g>
+    <g fill="#2a4e28" opacity=".7">
+      <polygon points="20,120 55,65 90,120"/>
+      <polygon points="110,120 148,42 186,120"/>
+      <polygon points="220,120 258,58 296,120"/>
+      <polygon points="320,120 360,35 400,120"/>
+      <polygon points="410,120 448,52 486,120"/>
+      <polygon points="510,120 550,25 590,120"/>
+      <polygon points="600,120 638,48 676,120"/>
+      <polygon points="700,120 740,18 780,120"/>
+      <polygon points="790,120 828,45 866,120"/>
+      <polygon points="890,120 930,22 970,120"/>
+      <polygon points="980,120 1018,48 1056,120"/>
+      <polygon points="1080,120 1120,18 1160,120"/>
+      <polygon points="1170,120 1208,42 1246,120"/>
+      <polygon points="1270,120 1310,20 1350,120"/>
+      <polygon points="1360,120 1398,48 1436,120"/>
+    </g>
+    <!-- CMPC text watermark -->
+    <text x="720" y="75" text-anchor="middle" font-family="'IBM Plex Sans',sans-serif" font-size="11" font-weight="700" letter-spacing="6" fill="#5a9e3a" opacity=".35" text-transform="uppercase">CMPC · BOSQUE SUSTENTABLE · INTEGRACIÓN IBM</text>
+    <!-- Ground -->
+    <rect x="0" y="108" width="1440" height="12" fill="#111a0f"/>
+  </svg>
+</div>
+
+<!-- ============ MODELO RU ============ -->
+<section class="dark" id="modelo">
+  <div class="wrap">
+    <span class="eyebrow">02 · Cómo se consume</span>
+    <h2 class="title">Resource Units: la bolsa que se va consumiendo</h2>
+    <p class="lead">Usted compra una bolsa de RU (el monto exacto queda en su Transaction Document). Cada cosa que activa o procesa consume una cantidad de RU. La bolsa debe alcanzar para cubrir 12 meses de uso.</p>
+
+    <div class="card-d bagfig">
+      <h3>Su bolsa de RU, en una imagen</h3>
+      <svg viewBox="0 0 1400 480" role="img" aria-label="Una bolsa de Resource Units de la que se consumen RU por instancias, uso y conexiones, y un medidor con el saldo restante" font-family="'IBM Plex Sans','Segoe UI',sans-serif">
+        <defs>
+          <linearGradient id="gBag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3ddc7a"/><stop offset="1" stop-color="#0B6B3A"/></linearGradient>
+          <linearGradient id="gCoin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8bf0b0"/><stop offset="1" stop-color="#1a9a4e"/></linearGradient>
+          <linearGradient id="gLvl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ddc7a"/><stop offset="1" stop-color="#0B6B3A"/></linearGradient>
+          <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2DBE60"/></marker>
+          <filter id="shd" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity=".5"/></filter>
+        </defs>
+
+        <!-- Bolsa -->
+        <ellipse cx="235" cy="420" rx="170" ry="14" fill="#000" opacity=".45"/>
+        <g stroke="#0B6B3A" stroke-width="3">
+          <circle cx="195" cy="86" r="28" fill="url(#gCoin)"/>
+          <circle cx="238" cy="68" r="28" fill="url(#gCoin)"/>
+          <circle cx="281" cy="88" r="28" fill="url(#gCoin)"/>
+        </g>
+        <g font-size="19" font-weight="800" fill="#06401f" text-anchor="middle">
+          <text x="195" y="93">RU</text><text x="238" y="75">RU</text><text x="281" y="95">RU</text>
+        </g>
+        <path d="M165 150 C150 120 140 100 150 88 C190 112 280 112 320 88 C330 100 320 120 305 150 Z" fill="#1fa851"/>
+        <path d="M172 160 C60 215 40 340 80 392 C100 420 370 420 390 392 C430 340 410 215 298 160 Z" fill="url(#gBag)" filter="url(#shd)"/>
+        <path d="M120 250 C95 300 100 350 125 385" stroke="#fff" stroke-opacity=".25" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <rect x="170" y="140" width="130" height="22" rx="11" fill="#0B6B3A"/>
+        <path d="M235 151 C215 175 200 185 195 205 M235 151 C255 175 270 185 275 205" stroke="#0B6B3A" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle cx="235" cy="300" r="64" fill="#0a0a0a" opacity=".35"/>
+        <text x="235" y="322" text-anchor="middle" font-size="64" font-weight="900" fill="#fff">RU</text>
+        <text x="235" y="372" text-anchor="middle" font-size="19" fill="#fff" opacity=".92">Resource Units</text>
+        <text x="235" y="462" text-anchor="middle" font-size="23" font-weight="800" fill="#2DBE60">Su bolsa de RU · 12 meses</text>
+
+        <!-- Conectores bolsa -> consumos -->
+        <g stroke="#2DBE60" stroke-width="3" fill="none" stroke-dasharray="9 8" marker-end="url(#arw)">
+          <path d="M415 280 C520 280 540 100 634 100"/>
+          <path d="M415 280 C520 280 540 226 634 226"/>
+          <path d="M415 280 C520 280 540 352 634 352"/>
+        </g>
+
+        <!-- Qué consume RU -->
+        <text x="640" y="30" font-size="20" font-weight="800" letter-spacing="2" fill="#2DBE60">LO QUE CONSUME RU</text>
+        <g>
+          <rect x="640" y="50" width="500" height="100" rx="18" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".2" stroke-width="2"/>
+          <circle cx="692" cy="100" r="26" fill="url(#gBag)"/><text x="692" y="109" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">1</text>
+          <text x="740" y="94" font-size="28" font-weight="800" fill="#fff">Instancias</text>
+          <text x="740" y="124" font-size="20" fill="#cfd8d3">Lo que usted activa · RU por mes</text>
+
+          <rect x="640" y="176" width="500" height="100" rx="18" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".2" stroke-width="2"/>
+          <circle cx="692" cy="226" r="26" fill="url(#gBag)"/><text x="692" y="235" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">2</text>
+          <text x="740" y="220" font-size="28" font-weight="800" fill="#fff">Uso</text>
+          <text x="740" y="250" font-size="20" fill="#cfd8d3">Lo que procesa · RU por volumen</text>
+
+          <rect x="640" y="302" width="500" height="100" rx="18" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".2" stroke-width="2"/>
+          <circle cx="692" cy="352" r="26" fill="url(#gBag)"/><text x="692" y="361" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">3</text>
+          <text x="740" y="346" font-size="28" font-weight="800" fill="#fff">Conexiones</text>
+          <text x="740" y="376" font-size="20" fill="#cfd8d3">Runtimes remotos y red privada</text>
+        </g>
+
+        <!-- Consumo hacia el medidor -->
+        <g stroke="#2DBE60" stroke-width="3" fill="none" marker-end="url(#arw)">
+          <path d="M1146 100 L1224 150"/>
+          <path d="M1146 226 L1224 226"/>
+          <path d="M1146 352 L1224 302"/>
+        </g>
+        <g font-size="20" font-weight="800" fill="#2DBE60" text-anchor="middle">
+          <text x="1186" y="106">−RU</text><text x="1186" y="214">−RU</text><text x="1176" y="384">−RU</text>
+        </g>
+
+        <!-- Medidor de saldo -->
+        <text x="1285" y="30" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">Saldo de la bolsa</text>
+        <rect x="1230" y="50" width="110" height="352" rx="30" fill="#ffffff" fill-opacity=".06" stroke="#ffffff" stroke-opacity=".4" stroke-width="3"/>
+        <path d="M1236 170 q25 -14 49 0 t49 0 V372 a24 24 0 0 1 -24 24 H1260 a24 24 0 0 1 -24 -24 Z" fill="url(#gLvl)"/>
+        <text x="1285" y="300" text-anchor="middle" font-size="40" font-weight="900" fill="#fff" opacity=".92">RU</text>
+        <text x="1285" y="436" text-anchor="middle" font-size="22" font-weight="800" fill="#2DBE60">12 meses</text>
+        <text x="1285" y="462" text-anchor="middle" font-size="18" fill="#aab3ad">se consume mes a mes</text>
+      </svg>
+    </div>
+
+    <div class="example">
+      <h3>Ejemplo ilustrativo con los valores de consumo de esta guía</h3>
+      <div class="eq">
+        <div class="t">1 instancia webMethods Integration: <b>60 RU × 12 meses</b> = 720 RU</div>
+        <div class="s">+</div>
+        <div class="t">20 millones de transacciones en producción: <b>200 bloques de 100K × 4 RU</b> = 800 RU</div>
+        <div class="s">=</div>
+        <div class="r">1.520 RU en el año</div>
+      </div>
+      <p class="note">Ejemplo con fines explicativos; su compromiso real de RU se define en su Transaction Document. Más abajo puede simular su propio escenario en la calculadora.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTANCIAS ============ -->
+<section class="light" id="instancias">
+  <div class="wrap">
+    <span class="eyebrow">03 · Primer componente</span>
+    <h2 class="title">Instancias: RU por mes por cada instancia activada</h2>
+    <p class="lead">Cada instancia provisionada consume RU, aunque esté inactiva. Aquí el consumo mensual por tipo de instancia y su equivalente en 12 meses.</p>
+
+    <div class="grid g5">
+      <div class="tile"><div class="nm">webMethods Integration</div><div class="ru">60 <small>RU / mes</small></div><div class="yr">= 720 RU al año</div></div>
+      <div class="tile"><div class="nm">App Connect Enterprise (ACE)</div><div class="ru">60 <small>RU / mes</small></div><div class="yr">= 720 RU al año</div></div>
+      <div class="tile"><div class="nm">B2B</div><div class="ru">60 <small>RU / mes</small></div><div class="yr">= 720 RU al año</div></div>
+      <div class="tile"><div class="nm">Managed File Transfer (MFT)</div><div class="ru">60 <small>RU / mes</small></div><div class="yr">= 720 RU al año</div></div>
+      <div class="tile"><div class="nm">Runtime de integración hosted adicional (dentro de un entorno existente)</div><div class="ru">5 <small>RU / mes</small></div><div class="yr">= 60 RU al año</div></div>
+
+      <div class="tile"><div class="nm">webMethods API Gateway</div><div class="ru">50 <small>RU / mes</small></div><div class="yr">= 600 RU al año</div></div>
+      <div class="tile"><div class="nm">API Connect</div><div class="ru">50 <small>RU / mes</small></div><div class="yr">= 600 RU al año</div></div>
+      <div class="tile"><div class="nm">Event Endpoint Management</div><div class="ru">50 <small>RU / mes</small></div><div class="yr">= 600 RU al año</div></div>
+      <div class="tile"><div class="nm">webMethods Developer Portal</div><div class="ru">50 <small>RU / mes</small></div><div class="yr">= 600 RU al año</div></div>
+      <div class="tile"><div class="nm">API Connect for GraphQL</div><div class="ru">15 <small>RU / mes</small></div><div class="yr">= 180 RU al año</div></div>
+    </div>
+
+    <div class="insight">
+      Developer Portal sin consumo adicional: si se despliega junto a API Connect o webMethods API Gateway, consume 0 RU.
+      <small>El Developer Portal desplegado por separado consume 50 RU/mes.</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ USO ============ -->
+<section class="alt" id="uso">
+  <div class="wrap">
+    <span class="eyebrow">04 · Segundo componente</span>
+    <h2 class="title">Uso: RU según lo que fluye por la plataforma</h2>
+    <p class="lead">Cada métrica tiene su unidad de conteo y dos tramos de consumo: el volumen anual más alto consume menos RU por bloque. Producción y no-producción se cuentan por separado, y en no-producción obtiene el doble de volumen por las mismas RU.</p>
+<div class="grid feat-grid">
+  <div class="card feat">
+    <div class="feat-head"><div class="tag">Métrica principal</div><h3>Transacciones de integración</h3><p>webMethods y App Connect Enterprise (ACE)</p></div>
+    <div class="feat-body">
+      <ul>
+        <li>Se genera <b>1 transacción</b> cada vez que se ejecuta un flujo.</li>
+        <li>Un flujo que dura más de 60 segundos suma 1 transacción adicional por cada 60 segundos extra. Por ejemplo, un flujo de 120 segundos cuenta 2 transacciones.</li>
+      </ul>
+      <div class="stats">
+        <div class="stat"><div class="sv">4 RU</div><div class="sl">por cada <b>100.000</b> transacciones, hasta 100.000.000 al año</div></div>
+        <div class="stat"><div class="sv">1 RU</div><div class="sl">por cada <b>100.000</b> transacciones sobre 100.000.000 al año</div></div>
+      </div>
+      <table class="t"><tr><th>Tramo anual</th><th>Producción</th><th>No-producción</th><th>RU</th></tr>
+      <tr><td>Hasta 100.000.000</td><td>100.000</td><td>200.000</td><td class="ru-c">4</td></tr>
+      <tr><td>Sobre 100.000.000</td><td>100.000</td><td>200.000</td><td class="ru-c">1</td></tr></table>
+      <div class="ex"><b>Ejemplo:</b> 20.000.000 de transacciones al año en producción = 200 bloques de 100.000 × 4 RU = <b>800 RU</b>.</div>
+    </div>
+  </div>
+
+  <div class="card feat">
+    <div class="feat-head"><div class="tag">Métrica principal</div><h3>Llamadas a APIs</h3><p>webMethods y API Connect</p></div>
+    <div class="feat-body">
+      <ul>
+        <li>Cada llamada entrante a un API Gateway o microgateway cuenta como <b>1 API Call</b>.</li>
+        <li>Es el volumen de uso de sus APIs publicadas, tanto internas como para socios y clientes.</li>
+      </ul>
+      <div class="stats">
+        <div class="stat"><div class="sv">3 RU</div><div class="sl">por cada <b>1.000.000</b> de llamadas, hasta 1.000.000.000 al año</div></div>
+        <div class="stat"><div class="sv">2 RU</div><div class="sl">por cada <b>1.000.000</b> de llamadas sobre 1.000.000.000 al año</div></div>
+      </div>
+      <table class="t"><tr><th>Tramo anual</th><th>Producción</th><th>No-producción</th><th>RU</th></tr>
+      <tr><td>Hasta 1.000.000.000</td><td>1.000.000</td><td>2.000.000</td><td class="ru-c">3</td></tr>
+      <tr><td>Sobre 1.000.000.000</td><td>1.000.000</td><td>2.000.000</td><td class="ru-c">2</td></tr></table>
+      <div class="ex"><b>Ejemplo:</b> 50.000.000 de llamadas al año en producción = 50 bloques de 1.000.000 × 3 RU = <b>150 RU</b>.</div>
+    </div>
+  </div>
+</div>
+
+<h3 class="sub-h">Otras métricas de uso</h3>
+<div class="grid g3">
+
+      <div class="card metric"><h3>Transferencia de archivos (MFT)</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Cada inicio de transferencia (entrante o saliente) = 1 transacción. Archivos de más de 5 MB suman 1 adicional por cada 5 MB extra (redondeado hacia arriba).</p></details>
+        <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
+        <tr><td>Hasta 100 M</td><td>100K</td><td>200K</td><td class="ru-c">4</td></tr>
+        <tr><td>Sobre 100 M</td><td>100K</td><td>200K</td><td class="ru-c">1</td></tr></table></div>
+
+      <div class="card metric"><h3>Documentos B2B</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Cada documento electrónico intercambiado (EDI, XML, CSV, etc.) = 1 transacción. Documentos de más de 5 KB suman 1 por cada 5 KB extra. En archivos batch, cada documento cuenta individualmente.</p></details>
+        <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
+        <tr><td>Hasta 100 M</td><td>100K</td><td>200K</td><td class="ru-c">4</td></tr>
+        <tr><td>Sobre 100 M</td><td>100K</td><td>200K</td><td class="ru-c">1</td></tr></table></div>
+
+      <div class="card metric"><h3>Value-Added Network (VAN)</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Cada documento enviado o recibido por la VAN = 1 transacción. Más de 5 KB suma 1 por cada 5 KB extra; en batch, cada documento cuenta individualmente.</p></details>
+        <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
+        <tr><td>Hasta 1 M</td><td>10K</td><td>20K</td><td class="ru-c">30</td></tr>
+        <tr><td>Sobre 1 M</td><td>10K</td><td>20K</td><td class="ru-c">10</td></tr></table></div>
+
+      <div class="card metric o"><h3>Llamadas GraphQL</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Cada llamada a un endpoint de API Connect for GraphQL = 1, más 1 por cada subgrafo federado invocado en su cuenta. Ejemplo: una llamada que toca 3 subgrafos = 4 llamadas.</p></details>
+        <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
+        <tr><td>Hasta 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">5</td></tr>
+        <tr><td>Sobre 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">3</td></tr></table></div>
+
+      <div class="card metric o"><h3>Mensajes de IA</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">DataPower Interact Gateway. Cada invocación (a un modelo, herramienta MCP o agente) = 1 mensaje de IA. Requiere una instancia de API Connect.</p></details>
+        <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
+        <tr><td>Hasta 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">6</td></tr>
+        <tr><td>Sobre 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">4</td></tr></table></div>
+
+      <div class="card metric o"><h3>Eventos</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Event Endpoint Management. Cada mensaje publicado o recibido por un Event Gateway = 1 evento. Mensajes de más de 200 KB suman 1 por cada 200 KB extra (redondeado hacia arriba).</p></details>
+        <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
+        <tr><td>Hasta 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">3</td></tr>
+        <tr><td>Sobre 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">2</td></tr></table></div>
+    </div>
+
+    <div class="insight">
+      Lea la tabla así: "100K transacciones de producción = 4 RU" (hasta 100 M al año). En no-producción, 200K transacciones consumen esos mismos 4 RU.
+      <small>No-producción es solo para desarrollo y pruebas internas: testing, staging, afinamiento de rendimiento, QA y extensiones internas. No puede usarse para cargas en vivo orientadas a clientes.</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HYBRID ============ -->
+<section class="dark" id="hybrid">
+  <div class="wrap">
+    <span class="eyebrow">05 · Tercer componente</span>
+    <h2 class="title">Conexiones: Hybrid Control Plane y red privada</h2>
+    <p class="lead">Si usted ejecuta integraciones on-premises o en otras nubes pero las administra desde IBM Integration SaaS, cada runtime remoto consume pocas RU. La conectividad por red privada consume RU por entorno.</p>
+
+    <div class="grid g3">
+      <div class="card-d">
+        <h3>Runtimes remotos (Hybrid Control Plane)</h3>
+        <p>Cada Integration Runtime (IR) o API Gateway remoto conectado al control plane consume RU <b style="color:var(--accent)">por unidad, por mes</b>.</p>
+        <table class="t wide" style="margin-top:14px;background:rgba(255,255,255,.04)">
+          <tr><th>Runtimes acumulados en el año</th><th>RU × runtime × mes</th></tr>
+          <tr><td style="color:#fff">Primeros 100</td><td class="ru-c" style="color:var(--accent)">2 RU</td></tr>
+          <tr><td style="color:#fff">Cada uno sobre 100</td><td class="ru-c" style="color:var(--accent)">1 RU</td></tr>
+        </table>
+        <p style="font-size:.82em;color:rgba(255,255,255,.55);margin-top:8px">Ej: 20 runtimes = 20 × 2 = <b style="color:rgba(255,255,255,.8)">40 RU/mes</b></p>
+      </div>
+      <div class="card-d">
+        <h3>Cómo se mide</h3>
+        <ul>
+          <li>Se mide por el <b>peak del mes</b>: se toma la cantidad máxima de runtimes remotos conectados en el mes calendario.</li>
+          <li>Event Gateways, DataPower Gateways y webMethods Integration Edge Runtimes que se usan como software habilitador <b>no se incluyen</b> en el cálculo de RU.</li>
+        </ul>
+        <div style="margin-top:18px;padding:14px 18px;background:rgba(255,255,255,.07);border-radius:12px;display:flex;align-items:center;gap:16px">
+          <div style="font-size:clamp(2rem,2.8vw,3.2rem);font-weight:900;color:var(--accent);line-height:1;flex-shrink:0">5 RU</div>
+          <p style="margin:0;font-size:.92em;color:rgba(255,255,255,.8)">por mes por cada entorno con <b style="color:#fff">conectividad de red privada</b> habilitada.</p>
+        </div>
+      </div>
+      <div class="card-d" style="display:flex;flex-direction:column;gap:14px">
+        <h3>¿Cuántas RU son mis runtimes?</h3>
+        <p style="font-size:.85em;color:rgba(255,255,255,.65);margin:0">Mueve el slider para ver el cálculo exacto.</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <input type="range" id="irSlider" min="1" max="300" value="20"
+            style="flex:1;accent-color:#5a9e3a;cursor:pointer">
+          <span id="irVal" style="font-size:1.4rem;font-weight:900;color:var(--accent);min-width:3ch;text-align:right">20</span>
+          <span style="font-size:.8rem;color:rgba(255,255,255,.5)">runtimes</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:.88em">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(90,158,58,.15);border-radius:8px;border-left:3px solid #5a9e3a">
+            <span style="color:rgba(255,255,255,.8)">Primeros <span id="irT1count">20</span> × <b style="color:#5a9e3a">2 RU</b></span>
+            <b id="irT1ru" style="color:#5a9e3a;font-size:1rem">40 RU/mes</b>
+          </div>
+          <div id="irT2row" style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(255,255,255,.06);border-radius:8px;border-left:3px solid rgba(255,255,255,.2)">
+            <span style="color:rgba(255,255,255,.5)">Sobre 100 → <span id="irT2count">0</span> × <b style="color:rgba(255,255,255,.7)">1 RU</b></span>
+            <b id="irT2ru" style="color:rgba(255,255,255,.5);font-size:1rem">0 RU/mes</b>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--grad-1);border-radius:10px;margin-top:2px">
+            <span style="color:rgba(255,255,255,.9);font-weight:700">Total / mes</span>
+            <b id="irTotal" style="color:#fff;font-size:1.15rem">40 RU/mes</b>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 14px 0;font-size:.82em;color:rgba(255,255,255,.4)">
+            <span>Anual (× 12)</span>
+            <span id="irAnual">480 RU/año</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-d" style="margin-top:clamp(24px,2.6vw,52px)">
+      <h3 class="sub-h" style="color:#fff">Ejemplo: sus plantas productivas on-premises</h3>
+      <p class="lead" style="margin-bottom:clamp(16px,1.8vw,32px)">Imagine una compañía con 4 plantas productivas. Cada planta ejecuta localmente su propio Integration Runtime y su propio API Gateway, y todo se administra desde IBM Integration SaaS a través del Hybrid Control Plane.</p>
+      <div class="grid g-ex">
+        <svg viewBox="0 0 900 470" role="img" aria-label="IBM Integration SaaS con Hybrid Control Plane conectado a cuatro plantas productivas on-premises, cada una con un Integration Runtime y un API Gateway remotos" font-family="'IBM Plex Sans','Segoe UI',sans-serif">
+          <defs>
+            <linearGradient id="gCloud" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F62FE"/><stop offset="1" stop-color="#001D6C"/></linearGradient>
+            <linearGradient id="gPlant" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3ddc7a"/><stop offset="1" stop-color="#0B6B3A"/></linearGradient>
+            <marker id="arw2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2DBE60"/></marker>
+          </defs>
+          <rect x="240" y="16" width="420" height="120" rx="26" fill="url(#gCloud)"/>
+          <g fill="#fff" fill-opacity=".16"><circle cx="300" cy="62" r="26"/><circle cx="332" cy="48" r="32"/><circle cx="370" cy="62" r="24"/><rect x="274" y="62" width="122" height="26" rx="13"/></g>
+          <text x="470" y="68" text-anchor="middle" font-size="28" font-weight="800" fill="#fff">IBM Integration SaaS</text>
+          <text x="470" y="100" text-anchor="middle" font-size="21" fill="#cfe0ff">Hybrid Control Plane</text>
+          <g stroke="#2DBE60" stroke-width="3" fill="none" stroke-dasharray="9 8" marker-end="url(#arw2)">
+            <path d="M450 138 C450 210 135 190 135 258"/>
+            <path d="M450 138 C450 210 345 200 345 258"/>
+            <path d="M450 138 C450 210 555 200 555 258"/>
+            <path d="M450 138 C450 210 765 190 765 258"/>
+          </g>
+          <g font-size="16" fill="#9fb3a8"><text x="682" y="62">Runtimes remotos</text><text x="682" y="84">on-premises, gestionados</text><text x="682" y="106">desde la nube</text></g>
+
+          <g>
+            <rect x="40" y="262" width="190" height="196" rx="18" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".2" stroke-width="2"/>
+            <rect x="250" y="262" width="190" height="196" rx="18" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".2" stroke-width="2"/>
+            <rect x="460" y="262" width="190" height="196" rx="18" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".2" stroke-width="2"/>
+            <rect x="670" y="262" width="190" height="196" rx="18" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".2" stroke-width="2"/>
+          </g>
+          <g id="fac" fill="url(#gPlant)">
+            <g transform="translate(135 330)"><path d="M-36 30 V-4 L-12 -18 V-4 L12 -18 V-4 L36 -18 V30 Z"/><rect x="18" y="-44" width="12" height="30"/><g fill="#06401f"><rect x="-24" y="8" width="12" height="12"/><rect x="-4" y="8" width="12" height="12"/><rect x="16" y="8" width="12" height="12"/></g></g>
+            <g transform="translate(345 330)"><path d="M-36 30 V-4 L-12 -18 V-4 L12 -18 V-4 L36 -18 V30 Z"/><rect x="18" y="-44" width="12" height="30"/><g fill="#06401f"><rect x="-24" y="8" width="12" height="12"/><rect x="-4" y="8" width="12" height="12"/><rect x="16" y="8" width="12" height="12"/></g></g>
+            <g transform="translate(555 330)"><path d="M-36 30 V-4 L-12 -18 V-4 L12 -18 V-4 L36 -18 V30 Z"/><rect x="18" y="-44" width="12" height="30"/><g fill="#06401f"><rect x="-24" y="8" width="12" height="12"/><rect x="-4" y="8" width="12" height="12"/><rect x="16" y="8" width="12" height="12"/></g></g>
+            <g transform="translate(765 330)"><path d="M-36 30 V-4 L-12 -18 V-4 L12 -18 V-4 L36 -18 V30 Z"/><rect x="18" y="-44" width="12" height="30"/><g fill="#06401f"><rect x="-24" y="8" width="12" height="12"/><rect x="-4" y="8" width="12" height="12"/><rect x="16" y="8" width="12" height="12"/></g></g>
+          </g>
+          <g text-anchor="middle" fill="#fff">
+            <text x="135" y="388" font-size="22" font-weight="800">Planta 1</text><text x="345" y="388" font-size="22" font-weight="800">Planta 2</text><text x="555" y="388" font-size="22" font-weight="800">Planta 3</text><text x="765" y="388" font-size="22" font-weight="800">Planta 4</text>
+            <g font-size="16" fill="#cfd8d3"><text x="135" y="411">1 Integration Runtime</text><text x="135" y="431">1 API Gateway</text><text x="345" y="411">1 Integration Runtime</text><text x="345" y="431">1 API Gateway</text><text x="555" y="411">1 Integration Runtime</text><text x="555" y="431">1 API Gateway</text><text x="765" y="411">1 Integration Runtime</text><text x="765" y="431">1 API Gateway</text></g>
+            <g font-size="17" font-weight="800" fill="#2DBE60"><text x="135" y="451">2 × 2 = 4 RU / mes</text><text x="345" y="451">2 × 2 = 4 RU / mes</text><text x="555" y="451">2 × 2 = 4 RU / mes</text><text x="765" y="451">2 × 2 = 4 RU / mes</text></g>
+          </g>
+        </svg>
+        <div>
+          <div class="eqrow"><div>Runtimes remotos conectados<br><small>4 plantas × 2 (1 IR + 1 API GW) · peak del mes</small></div><b>8</b></div>
+          <div class="eqrow"><div>Consumo de runtimes remotos<br><small>8 × 2 RU / mes × 12 meses</small></div><b>192 RU</b></div>
+          <div class="eqrow"><div>Red privada<br><small>1 entorno × 5 RU / mes × 12 meses</small></div><b>60 RU</b></div>
+          <div class="eqrow total"><div><b style="font-size:1em">Total anual de conexiones</b></div><b>252 RU</b></div>
+          <p class="note">Ejemplo ilustrativo con los valores de consumo de esta guía. Con menos de 100 runtimes remotos, cada uno consume 2 RU por mes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULADORA ============ -->
+<section class="light" id="calculadora">
+  <div class="wrap">
+    <span class="eyebrow">06 · Simule su escenario</span>
+    <h2 class="title">Calculadora de RU</h2>
+    <p class="lead">Estime cuántas RU consumiría en 12 meses. Indique cuántas instancias necesita en cada ambiente (productivo, pre-productivo y QA) y los volúmenes anuales exactos. Es una referencia ilustrativa con los valores de consumo de esta guía, no una cotización.</p>
+
+    <div class="qabar"><button type="button" class="qabtn" id="qaToggle" aria-pressed="false"></button><span id="qaHint">El ambiente QA está oculto; actívelo si también necesita contarlo.</span></div>
+    <div class="calc noqa" id="calc">
+      <div class="panel">
+        <h3>1 · Instancias por ambiente (activas los 12 meses)</h3>
+        <div class="m hd"><span>Instancia</span><span>Productivo</span><span>Pre-productivo</span><span class="q">QA</span></div>
+        <div id="inst-rows"></div>
+        <div id="inst-more"></div>
+        <button type="button" class="more" id="instToggle" aria-expanded="false"></button>
+        <label class="chk"><input type="checkbox" id="portalFree" checked> <span>El Developer Portal se despliega junto a API Connect o webMethods API Gateway (0 RU)</span></label>
+        <hr>
+        <h3>3 · Conexiones</h3>
+        <div class="r"><label for="hyb">Runtimes remotos (peak del mes)</label><input class="num" inputmode="numeric" autocomplete="off" type="text" id="hyb" value="0"></div>
+        <div class="r"><label for="pn">Entornos con red privada</label><input class="num" inputmode="numeric" autocomplete="off" type="text" id="pn" value="0"></div>
+      </div>
+
+      <div class="panel">
+        <h3>2 · Volumen anual exacto</h3>
+        <div class="u hd"><span>Métrica</span><span>Productivo</span><span>Pre-productivo</span><span class="q">QA</span></div>
+        <div id="use-rows"></div>
+        <p class="note" id="use-empty" style="display:none">Seleccione al menos una instancia en el paso 1 para ingresar sus volúmenes de uso.</p>
+        <p class="note" id="npNote"></p>
+      </div>
+
+      <div class="result">
+        <div class="lbl">RU estimadas en 12 meses</div>
+        <div class="tot" id="tot">0</div>
+        <div class="mo" id="mo">≈ 0 RU por mes</div>
+        <div id="bars"></div>
+        <div class="disc">Estimación ilustrativa. El compromiso de RU, descuentos y condiciones se definen en su Transaction Document. Si se superan las RU contratadas, el consumo adicional se factura como excedente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENSAJES DE IA / INTERACT GATEWAY ============ -->
+<section class="alt" id="dependencias">
+  <div class="wrap">
+    <span class="eyebrow">07 · Mensajes de IA</span>
+    <h2 class="title">DataPower Interact Gateway: el control de su tráfico de IA</h2>
+    <p class="lead">Si usted quiere mensajes de IA, el tráfico hacia modelos, herramientas MCP y agentes pasa por DataPower Interact Gateway. Este componente necesita una instancia de API Connect como prerrequisito.</p>
+
+    <div class="grid g-ex ai">
+      <div class="card">
+        <svg viewBox="0 0 900 450" role="img" aria-label="Sus aplicaciones y agentes de IA envían invocaciones a DataPower Interact Gateway, que las dirige a modelos de IA, herramientas MCP y agentes. Cada invocación es un mensaje de IA. Requiere una instancia de API Connect." font-family="'IBM Plex Sans','Segoe UI',sans-serif">
+          <defs>
+            <linearGradient id="aiG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2DBE60"/><stop offset="1" stop-color="#0B6B3A"/></linearGradient>
+            <linearGradient id="aiB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F62FE"/><stop offset="1" stop-color="#001D6C"/></linearGradient>
+            <marker id="aiA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2DBE60"/></marker>
+            <marker id="aiD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0F62FE"/></marker>
+          </defs>
+
+          <rect x="16" y="150" width="200" height="120" rx="16" fill="#fff" stroke="#cfd8d3" stroke-width="2"/>
+          <text x="116" y="196" text-anchor="middle" font-size="20" font-weight="800" fill="#1f2328">Sus aplicaciones</text>
+          <text x="116" y="224" text-anchor="middle" font-size="20" font-weight="800" fill="#1f2328">y agentes de IA</text>
+          <text x="116" y="252" text-anchor="middle" font-size="15" fill="#57606a">hacen invocaciones</text>
+
+          <path d="M218 210 H306" stroke="#2DBE60" stroke-width="4" fill="none" marker-end="url(#aiA)"/>
+
+          <rect x="310" y="120" width="260" height="180" rx="22" fill="url(#aiG)"/>
+          <text x="440" y="188" text-anchor="middle" font-size="26" font-weight="800" fill="#fff">DataPower</text>
+          <text x="440" y="222" text-anchor="middle" font-size="26" font-weight="800" fill="#fff">Interact Gateway</text>
+          <text x="440" y="258" text-anchor="middle" font-size="16" fill="#e6f7ec">controla y cuenta cada invocación</text>
+
+          <rect x="310" y="44" width="260" height="52" rx="26" fill="#fff" stroke="#2DBE60" stroke-width="3"/>
+          <text x="440" y="67" text-anchor="middle" font-size="17" font-weight="800" fill="#0B6B3A">1 invocación</text>
+          <text x="440" y="88" text-anchor="middle" font-size="17" font-weight="800" fill="#0B6B3A">= 1 mensaje de IA</text>
+
+          <g fill="none" stroke="#2DBE60" stroke-width="4" marker-end="url(#aiA)">
+            <path d="M572 190 C620 190 620 76 676 76"/>
+            <path d="M572 210 H676"/>
+            <path d="M572 230 C620 230 620 344 676 344"/>
+          </g>
+          <g font-weight="800" font-size="20" fill="#1f2328">
+            <rect x="680" y="40" width="204" height="72" rx="14" fill="#fff" stroke="#cfd8d3" stroke-width="2"/><text x="782" y="84" text-anchor="middle">Modelo de IA</text>
+            <rect x="680" y="174" width="204" height="72" rx="14" fill="#fff" stroke="#cfd8d3" stroke-width="2"/><text x="782" y="218" text-anchor="middle">Herramienta MCP</text>
+            <rect x="680" y="308" width="204" height="72" rx="14" fill="#fff" stroke="#cfd8d3" stroke-width="2"/><text x="782" y="352" text-anchor="middle">Agente de IA</text>
+          </g>
+
+          <path d="M440 366 V304" stroke="#0F62FE" stroke-width="4" stroke-dasharray="9 7" fill="none" marker-end="url(#aiD)"/>
+          <text x="456" y="326" font-size="15" font-weight="700" fill="#0F62FE">Prerrequisito: requiere una</text>
+          <text x="456" y="346" font-size="15" font-weight="700" fill="#0F62FE">instancia de API Connect</text>
+
+          <rect x="310" y="370" width="260" height="62" rx="16" fill="url(#aiB)"/>
+          <text x="440" y="398" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">API Connect</text>
+          <text x="440" y="420" text-anchor="middle" font-size="15" fill="#cfe0ff">50 RU por mes por instancia</text>
+        </svg>
+      </div>
+
+      <div class="ai-side">
+        <div class="card">
+          <h3>Cómo se consume</h3>
+          <div class="stats">
+            <div class="stat"><div class="sv">6 RU</div><div class="sl">por cada <b>1.000.000</b> de mensajes, hasta 1.000.000.000 al año</div></div>
+            <div class="stat"><div class="sv">4 RU</div><div class="sl">por cada <b>1.000.000</b> de mensajes sobre 1.000.000.000 al año</div></div>
+          </div>
+          <p>En no-producción, 2.000.000 de mensajes consumen las mismas RU que 1.000.000 en producción.</p>
+        </div>
+        <div class="card ex2"><b>Ejemplo:</b> 10.000.000 de mensajes de IA al año en producción = 10 bloques de 1.000.000 × 6 RU = <b>60 RU</b>, además de las RU de la instancia de API Connect.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ SLA ============ -->
+<section class="light" id="servicio">
+  <div class="wrap">
+    <span class="eyebrow">08 · Compromiso de servicio</span>
+    <h2 class="title">SLA: disponibilidad y créditos</h2>
+    <p class="lead">IBM mide la disponibilidad mensual como (minutos totales del mes − minutos fuera de servicio) ÷ minutos totales del mes. Si IBM no cumple la meta, usted recibe un crédito equivalente a un porcentaje de la cuota mensual de su suscripción.</p>
+
+    <div class="grid g-split">
+      <div class="tbl-wrap">
+        <table class="t wide">
+          <tr><th>Disponibilidad en Producción</th><th>Disponibilidad en Dev/Test</th><th>Crédito</th></tr>
+          <tr><td>&lt; 99,9 %</td><td>&lt; 99,0 %</td><td class="ru-c">2 %</td></tr>
+          <tr><td>&lt; 99,0 %</td><td>&lt; 95,0 %</td><td class="ru-c">5 %</td></tr>
+          <tr><td>&lt; 95,0 %</td><td>&lt; 90,0 %</td><td class="ru-c">10 %</td></tr>
+        </table>
+      </div>
+      <div class="card o">
+        <h3>Exclusiones a considerar</h3>
+        <p>Los créditos no aplican a interrupciones causadas por:</p>
+        <ul>
+          <li>Sus propios endpoints de API</li>
+          <li>APIs de gestión</li>
+          <li>Analítica de uso</li>
+          <li>AI Agents o AI Assistants</li>
+        </ul>
+        <p class="note">Las funciones etiquetadas como "Tech Preview" están excluidas del SLA y pueden no tener soporte; IBM puede cambiarlas o retirarlas sin aviso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONECTORES Y COMPONENTES ============ -->
+<section class="light" id="conectores">
+  <div class="wrap">
+    <span class="eyebrow">10 · Por qué IBM gana aquí</span>
+    <h2 class="title">Una plataforma. Todos los patrones. Sin sorpresas.</h2>
+    <p class="lead">IBM Integration cubre en un solo contrato lo que otras organizaciones resuelven con múltiples herramientas: integración de aplicaciones, APIs, B2B, transferencia de archivos, eventos y mensajería. Con conectividad SAP nativa, más de 400 conectores pre-construidos y capacidad de operar completamente sin conexión a la nube.</p>
+
+    <!-- Bloque A: 5 argumentos de valor -->
+    <div class="grid g3" style="margin-bottom:clamp(28px,3vw,56px)">
+
+      <!-- Arg 1: SAP nativo -->
+      <div class="card o">
+        <div class="chip o">Conectividad SAP</div>
+        <h3>SAP nativo sin costo adicional</h3>
+        <p>Conectividad directa con S/4HANA, SAP ECC y SAP BTP mediante RFC, IDoc, BAPI y OData. El runtime corre cerca del sistema SAP con idempotencia y reintentos documentados — sin adaptadores premium ni cotización separada.</p>
+      </div>
+
+      <!-- Arg 2: Runtimes predecibles -->
+      <div class="card o">
+        <div class="chip o">Runtimes remotos</div>
+        <h3>Sin incógnitas en el costo de conexión</h3>
+        <p>Cada runtime remoto consume una cantidad fija y conocida de RU por mes. La tarifa escala de forma favorable a mayor volumen. No hay cargos ocultos por cantidad de runtimes conectados al Hybrid Control Plane.</p>
+      </div>
+
+      <!-- Arg 3: Precio predecible sin escaladores -->
+      <div class="card o">
+        <div class="chip o">Modelo de precio</div>
+        <h3>Lo que se firma es lo que se paga</h3>
+        <p>El modelo de bolsa de RU define el costo total en el Transaction Document antes de contratar. No hay ajustes anuales automáticos ni cargos por capacidad no planificada durante la vigencia del contrato.</p>
+      </div>
+
+      <!-- Arg 4: 400+ conectores -->
+      <div class="card o">
+        <div class="chip o">Catálogo</div>
+        <h3>Más de 400 conectores pre-construidos</h3>
+        <p>El catálogo incluye conectores para aplicaciones SaaS (Salesforce, ServiceNow), enterprise (SAP, bases de datos), REST/SOAP personalizados, on-premises y archivos planos — todos incluidos en la plataforma, sin add-ons premium.</p>
+      </div>
+
+      <!-- Arg 5: 8 patrones en un contrato -->
+      <div class="card o" style="grid-column:span 2">
+        <div class="chip o">Consolidación</div>
+        <h3>8 patrones de integración en un solo contrato</h3>
+        <p>IBM Integration cubre en una sola plataforma y una sola bolsa de RU los 8 patrones que las empresas necesitan: integración de aplicaciones, gestión de APIs, B2B, transferencia de archivos, eventos, mensajería, AI/MCP gateway y secure gateway. No hay productos separados, capas adicionales ni add-ons por patrón.</p>
+      </div>
+
+    </div>
+
+    <!-- Bloque B: Software incluido mejorado -->
+    <h3 class="sub-h" style="margin-bottom:18px">Software incluido — sin compra separada</h3>
+    <div class="tbl-wrap" style="margin-bottom:clamp(24px,2.6vw,48px)">
+      <table class="t wide">
+        <tr><th>Componente</th><th>Cuándo se activa</th><th>Por qué importa</th></tr>
+        <tr>
+          <td><b>ACE Secure Agent 12.0.0</b></td>
+          <td>Al usar App Connect</td>
+          <td>Conectividad segura desde plantas sin abrir puertos de entrada — solo salida al control plane</td>
+        </tr>
+        <tr>
+          <td><b>webMethods Integration Edge Runtime</b></td>
+          <td>Al usar webMethods Integration</td>
+          <td>Procesamiento autónomo durante cortes de WAN en plantas industriales; cola local con reintentos</td>
+        </tr>
+        <tr>
+          <td><b>DataPower Gateway Virtual Edition</b></td>
+          <td>Al usar DataPower Gateway remoto con API Connect</td>
+          <td>Gateway de API enterprise con seguridad avanzada en el perímetro, sin licencia adicional</td>
+        </tr>
+        <tr>
+          <td><b>Event Gateway</b></td>
+          <td>Al usar Event Endpoint Management</td>
+          <td>Publica y consume eventos Kafka sin infraestructura adicional de mensajería</td>
+        </tr>
+        <tr>
+          <td><b>ACE Evaluation Edition</b></td>
+          <td>Al usar App Connect (desarrollo)</td>
+          <td>Desarrollo local de flujos con el ACE Toolkit sin licencia de desarrollo separada</td>
+        </tr>
+      </table>
+    </div>
+    <p class="note">Estos componentes se entregan con el servicio y no requieren compra separada. Cada uno tiene sus propios términos de licencia.</p>
+
+    <!-- Bloque C: Insight de cierre -->
+    <div class="insight" style="margin-top:clamp(24px,2.6vw,48px)">
+      Una sola plataforma que consolida conectividad SAP, APIs, transferencia de archivos, B2B, eventos y mensajería — con trazabilidad end-to-end, operación híbrida y cumplimiento normativo desde el día uno.
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CMPC DRONE OVER FOREST ============ -->
+<div style="background:var(--light);overflow:hidden;line-height:0;padding:clamp(32px,4vw,70px) var(--pad-x);display:flex;flex-direction:column;align-items:center;gap:16px">
+  <p style="font-family:'IBM Plex Sans','Segoe UI',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3a6b1e;margin:0">CMPC · Tecnología al servicio del bosque</p>
+  <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:900px;height:auto">
+    <defs>
+      <radialGradient id="skyG" cx="50%" cy="0%" r="80%">
+        <stop offset="0%" stop-color="#c8e6c9"/>
+        <stop offset="100%" stop-color="#f0f4ec"/>
+      </radialGradient>
+    </defs>
+    <!-- Sky background -->
+    <rect width="900" height="220" fill="url(#skyG)"/>
+    <!-- Ground -->
+    <rect x="0" y="185" width="900" height="35" fill="#3a6b35"/>
+    <rect x="0" y="190" width="900" height="30" fill="#2a4e28"/>
+    <!-- Ferns/undergrowth -->
+    <g fill="#4a7a3a" opacity=".7">
+      <ellipse cx="50" cy="192" rx="45" ry="12"/>
+      <ellipse cx="150" cy="195" rx="40" ry="10"/>
+      <ellipse cx="780" cy="192" rx="50" ry="12"/>
+      <ellipse cx="860" cy="195" rx="35" ry="10"/>
+      <ellipse cx="450" cy="195" rx="35" ry="9"/>
+      <ellipse cx="680" cy="192" rx="42" ry="11"/>
+      <ellipse cx="250" cy="194" rx="38" ry="10"/>
+    </g>
+    <!-- Background trees -->
+    <g fill="#5a8a4a" opacity=".5">
+      <polygon points="0,185 35,100 70,185"/>
+      <polygon points="60,185 95,85 130,185"/>
+      <polygon points="130,185 162,105 194,185"/>
+      <polygon points="770,185 805,90 840,185"/>
+      <polygon points="830,185 865,108 900,185"/>
+    </g>
+    <!-- Mid trees -->
+    <g fill="#3a6b35" opacity=".75">
+      <polygon points="30,185 70,65 110,185"/>
+      <polygon points="100,185 142,45 184,185"/>
+      <polygon points="170,185 205,75 240,185"/>
+      <polygon points="650,185 688,58 726,185"/>
+      <polygon points="720,185 758,72 796,185"/>
+      <polygon points="800,185 840,48 880,185"/>
+    </g>
+    <!-- Front trees -->
+    <g fill="#1c3d1c">
+      <polygon points="0,185 50,30 100,185"/>
+      <polygon points="70,185 118,10 166,185"/>
+      <polygon points="150,185 192,48 234,185"/>
+      <polygon points="600,185 648,18 696,185"/>
+      <polygon points="670,185 715,35 760,185"/>
+      <polygon points="740,185 788,8 836,185"/>
+      <polygon points="820,185 862,28 904,185"/>
+    </g>
+    <!-- Tree trunks -->
+    <g fill="#5c4033" opacity=".8">
+      <rect x="46" y="165" width="8" height="20"/>
+      <rect x="113" y="162" width="8" height="23"/>
+      <rect x="188" y="167" width="8" height="18"/>
+      <rect x="644" y="160" width="8" height="25"/>
+      <rect x="711" y="163" width="8" height="22"/>
+      <rect x="784" y="158" width="8" height="27"/>
+      <rect x="858" y="163" width="8" height="22"/>
+    </g>
+    <!-- Central open space with lighter tone -->
+    <ellipse cx="450" cy="185" rx="200" ry="20" fill="#7fb069" opacity=".3"/>
+    <!-- DRONE body -->
+    <g transform="translate(450,78)">
+      <!-- Central body -->
+      <rect x="-22" y="-10" width="44" height="20" rx="6" fill="#2d2d2d"/>
+      <rect x="-14" y="-16" width="28" height="32" rx="4" fill="#3a3a3a"/>
+      <!-- Arms -->
+      <line x1="-14" y1="-8" x2="-55" y2="-32" stroke="#2d2d2d" stroke-width="5" stroke-linecap="round"/>
+      <line x1="14" y1="-8" x2="55" y2="-32" stroke="#2d2d2d" stroke-width="5" stroke-linecap="round"/>
+      <line x1="-14" y1="8" x2="-55" y2="32" stroke="#2d2d2d" stroke-width="5" stroke-linecap="round"/>
+      <line x1="14" y1="8" x2="55" y2="32" stroke="#2d2d2d" stroke-width="5" stroke-linecap="round"/>
+      <!-- Motor hubs -->
+      <circle cx="-55" cy="-32" r="9" fill="#1a1a1a" stroke="#5a9e3a" stroke-width="2"/>
+      <circle cx="55" cy="-32" r="9" fill="#1a1a1a" stroke="#5a9e3a" stroke-width="2"/>
+      <circle cx="-55" cy="32" r="9" fill="#1a1a1a" stroke="#5a9e3a" stroke-width="2"/>
+      <circle cx="55" cy="32" r="9" fill="#1a1a1a" stroke="#5a9e3a" stroke-width="2"/>
+      <!-- Propellers -->
+      <g fill="#4a4a4a" opacity=".85">
+        <ellipse cx="-55" cy="-32" rx="26" ry="4" transform="rotate(-20,-55,-32)"/>
+        <ellipse cx="55" cy="-32" rx="26" ry="4" transform="rotate(20,55,-32)"/>
+        <ellipse cx="-55" cy="32" rx="26" ry="4" transform="rotate(20,-55,32)"/>
+        <ellipse cx="55" cy="32" rx="26" ry="4" transform="rotate(-20,55,32)"/>
+      </g>
+      <!-- Camera gimbal -->
+      <rect x="-8" y="10" width="16" height="14" rx="4" fill="#1a1a1a"/>
+      <circle cx="0" cy="20" r="6" fill="#111" stroke="#666" stroke-width="1.5"/>
+      <circle cx="0" cy="20" r="3" fill="#333"/>
+      <!-- LED lights -->
+      <circle cx="-55" cy="-32" r="3" fill="#5a9e3a"/>
+      <circle cx="55" cy="-32" r="3" fill="#5a9e3a"/>
+      <circle cx="-55" cy="32" r="3" fill="#c0392b"/>
+      <circle cx="55" cy="32" r="3" fill="#c0392b"/>
+    </g>
+    <!-- Drone shadow on ground -->
+    <ellipse cx="450" cy="194" rx="30" ry="5" fill="#1c3d1c" opacity=".25"/>
+    <!-- Scan lines below drone -->
+    <g stroke="#5a9e3a" stroke-width="1" opacity=".35" stroke-dasharray="4 4">
+      <line x1="420" y1="98" x2="390" y2="160"/>
+      <line x1="450" y1="102" x2="450" y2="165"/>
+      <line x1="480" y1="98" x2="510" y2="160"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ============ RECURSOS ============ -->
+<section class="cta" id="recursos">
+  <div class="wrap">
+    <span class="eyebrow">Recursos</span>
+    <h2 class="title">Documentación de referencia</h2>
+    <p class="lead" style="color:rgba(255,255,255,.85)">Esta página es un resumen informativo basado en la Descripción del Servicio de IBM Integration SaaS (5900-BKX). No sustituye los términos legales.</p>
+    <div class="links">
+      <a href="https://www.ibm.com/terms/csa" target="_blank" rel="noopener">Cloud Services Agreement<small>ibm.com/terms/csa</small></a>
+      <a href="https://www.ibm.com/dpa" target="_blank" rel="noopener">Data Processing Addendum<small>ibm.com/dpa</small></a>
+      <a href="https://www.ibm.com/terms/?id=i126-9789" target="_blank" rel="noopener">Ofertas de soporte opcionales<small>ibm.com/terms/?id=i126-9789</small></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Resumen informativo del modelo de licenciamiento de IBM Integration SaaS · No sustituye los términos legales del servicio (5900-BKX).</p>
+  <p>Made with IBM Bob</p>
+</footer>
+
+<script>
+(function(){
+  /* Instancias: nombre, RU/mes, cantidad por defecto [Productivo, Pre-productivo, QA]. Las primeras NVIS siempre están visibles; el resto se despliega con un botón */
+  var INST=[
+    ["webMethods Integration",60,[1,1,1]],["App Connect Enterprise (ACE)",60,[0,0,0]],["API Connect",50,[1,1,1]],["webMethods Developer Portal",50,[1,1,1]],
+    ["B2B",60,[0,0,0]],["Managed File Transfer (MFT)",60,[0,0,0]],["webMethods API Gateway",50,[0,0,0]],
+    ["Event Endpoint Management",50,[0,0,0]],["API Connect for GraphQL",15,[0,0,0]],["Runtime hosted adicional",5,[0,0,0]]
+  ];
+  var NVIS=4, DEV_PORTAL=3;
+  /* Uso: bloque, límite del tramo, RU tramo bajo, RU tramo alto, volumen por defecto [Productivo, Pre-productivo, QA]; dep = instancias que habilitan la métrica */
+  var USE=[
+    {n:"Transacciones de integración",blk:1e5,tier:1e8,lo:4,hi:1,v:[20000000,5000000,5000000],dep:[0,1]},
+    {n:"Llamadas a APIs",blk:1e6,tier:1e9,lo:3,hi:2,v:[50000000,2000000,3000000],dep:[2,6]},
+    {n:"Transacciones MFT",blk:1e5,tier:1e8,lo:4,hi:1,v:[0,0,0],dep:[5]},
+    {n:"Documentos B2B",blk:1e5,tier:1e8,lo:4,hi:1,v:[0,0,0],dep:[4]},
+    {n:"Documentos VAN",blk:1e4,tier:1e6,lo:30,hi:10,v:[0,0,0],dep:[4]},
+    {n:"Llamadas GraphQL",blk:1e6,tier:1e9,lo:5,hi:3,v:[0,0,0],dep:[8]},
+    {n:"Mensajes de IA",blk:1e6,tier:1e9,lo:6,hi:4,v:[0,0,0],dep:[2]},
+    {n:"Eventos",blk:1e6,tier:1e9,lo:3,hi:2,v:[0,0,0],dep:[7]}
+  ];
+  var MONTHS=12;
+  /* Números enteros completos con separador de miles, sin abreviar */
+  var fmt=function(x){return Math.round(x).toLocaleString('es-CL');};
+  var parse=function(s){var d=String(s).replace(/\D/g,'');return d?parseInt(d,10):0;};
+  var field=function(id,v){return '<input class="num'+(/_2$/.test(id)?' q':'')+'" type="text" inputmode="numeric" autocomplete="off" id="'+id+'" value="'+fmt(v)+'">';};
+
+  var instBox=document.getElementById('inst-rows'), moreBox=document.getElementById('inst-more'), toggle=document.getElementById('instToggle');
+  var instRows=[], useRows=[], expanded=false, qa=false;
+  INST.forEach(function(it,i){
+    var d=document.createElement('div');d.className='m';
+    d.innerHTML='<label>'+it[0]+'<small>'+it[1]+' RU por mes</small></label>'+field('i'+i+'_0',it[2][0])+field('i'+i+'_1',it[2][1])+field('i'+i+'_2',it[2][2]);
+    if(i>=NVIS) d.style.display='none';
+    (i<NVIS?instBox:moreBox).appendChild(d);
+    instRows.push(d);
+  });
+  var useBox=document.getElementById('use-rows');
+  USE.forEach(function(it,i){
+    var d=document.createElement('div');d.className='u';
+    d.innerHTML='<label>'+it.n+'</label>'+field('v'+i+'_0',it.v[0])+field('v'+i+'_1',it.v[1])+field('v'+i+'_2',it.v[2]);
+    useBox.appendChild(d);
+    useRows.push(d);
+  });
+  /* Cantidad total de una instancia en los 3 ambientes */
+  function instQty(i){return val('i'+i+'_0')+val('i'+i+'_1')+val('i'+i+'_2');}
+  /* Una métrica de uso está activa solo si hay al menos una instancia que la habilita */
+  function useActive(m){return m.dep.some(function(j){return instQty(j)>0;});}
+  /* Instancias adicionales: se muestran al desplegar o si tienen cantidad; solo se vuelven a ocultar al pulsar el botón */
+  function refreshView(fromToggle){
+    for(var i=NVIS;i<INST.length;i++){
+      var show=expanded||instQty(i)>0;
+      if(show) instRows[i].style.display='';
+      else if(fromToggle) instRows[i].style.display='none';
+    }
+    toggle.textContent=expanded?'Ocultar instancias adicionales ▲':'Mostrar más instancias ('+(INST.length-NVIS)+') ▼';
+    toggle.setAttribute('aria-expanded',expanded);
+    var any=false;
+    USE.forEach(function(m,i){var on=useActive(m);useRows[i].style.display=on?'':'none';if(on)any=true;});
+    document.getElementById('use-empty').style.display=any?'none':'';
+  }
+  toggle.addEventListener('click',function(){expanded=!expanded;refreshView(true);});
+  /* QA oculto por defecto: mientras esté oculto no suma instancias ni volumen */
+  var qaBtn=document.getElementById('qaToggle'), calcEl=document.getElementById('calc'), qaHint=document.getElementById('qaHint');
+  function setQA(){
+    calcEl.classList.toggle('noqa',!qa);
+    qaBtn.textContent=qa?'− Quitar ambiente QA':'+ Agregar ambiente QA';
+    qaBtn.setAttribute('aria-pressed',qa);
+    qaHint.style.display=qa?'none':'';
+    document.getElementById('npNote').textContent=qa?'Pre-productivo y QA cuentan como no-producción: sus volúmenes se suman y se convierten a su equivalente en producción (÷2) antes de aplicar el tramo.':'Pre-productivo cuenta como no-producción: su volumen se convierte a su equivalente en producción (÷2) antes de aplicar el tramo.';
+  }
+  qaBtn.addEventListener('click',function(){qa=!qa;setQA();calc();});
+  setQA();
+
+  function tiered(vol,m){
+    var low=Math.min(vol,m.tier), high=Math.max(vol-m.tier,0);
+    return (low/m.blk)*m.lo+(high/m.blk)*m.hi;
+  }
+  function val(id){if(!qa&&/_2$/.test(id)) return 0;return parse(document.getElementById(id).value);}
+
+  function calc(){
+    refreshView();
+    var instProd=0, instNon=0;
+    INST.forEach(function(it,i){
+      var ru=it[1];
+      if(i===DEV_PORTAL && document.getElementById('portalFree').checked) ru=0;
+      instProd+=val('i'+i+'_0')*ru*MONTHS;
+      instNon +=(val('i'+i+'_1')+val('i'+i+'_2'))*ru*MONTHS;
+    });
+    var prod=0, nonprod=0;
+    USE.forEach(function(m,i){
+      if(!useActive(m)) return;
+      prod+=tiered(val('v'+i+'_0'),m);
+      nonprod+=tiered((val('v'+i+'_1')+val('v'+i+'_2'))/2,m);
+    });
+    var h=val('hyb');
+    var hyb=(Math.min(h,100)*2+Math.max(h-100,0)*1)*MONTHS;
+    var priv=val('pn')*5*MONTHS;
+    var total=instProd+instNon+prod+nonprod+hyb+priv;
+    document.getElementById('tot').textContent=fmt(Math.ceil(total));
+    document.getElementById('mo').textContent='≈ '+fmt(total/MONTHS)+' RU por mes';
+    var parts=[["Instancias productivas",instProd],["Instancias pre-productivas"+(qa?" y QA":""),instNon],["Uso en producción",prod],["Uso en pre-productivo"+(qa?" y QA":""),nonprod],["Hybrid Control Plane",hyb],["Red privada",priv]];
+    var html='';
+    parts.forEach(function(p){
+      var pct=total>0?(p[1]/total*100):0;
+      html+='<div class="bar"><div class="bl"><span>'+p[0]+'</span><b>'+fmt(p[1])+' RU</b></div><div class="tr"><div class="fi" style="width:'+pct.toFixed(1)+'%"></div></div></div>';
+    });
+    document.getElementById('bars').innerHTML=html;
+  }
+
+  /* Los campos de la calculadora muestran el número completo con separador de miles mientras se escribe */
+  document.querySelectorAll('.calc input.num').forEach(function(el){
+    el.addEventListener('input',function(){
+      var n=parse(el.value);
+      el.value=fmt(n);
+      calc();
+    });
+    el.addEventListener('focus',function(){el.select();});
+  });
+  document.getElementById('portalFree').addEventListener('change',calc);
+  calc();
+})();
+
+// IR Slider
+(function(){
+  var sl=document.getElementById('irSlider');
+  if(!sl) return;
+  function upd(){
+    var n=+sl.value;
+    var t1=Math.min(n,100), t2=Math.max(0,n-100);
+    var ru1=t1*2, ru2=t2*1, tot=ru1+ru2;
+    document.getElementById('irVal').textContent=n;
+    document.getElementById('irT1count').textContent=t1;
+    document.getElementById('irT1ru').textContent=ru1+' RU/mes';
+    document.getElementById('irT2count').textContent=t2;
+    document.getElementById('irT2ru').textContent=ru2+' RU/mes';
+    document.getElementById('irTotal').textContent=tot+' RU/mes';
+    document.getElementById('irAnual').textContent=(tot*12).toLocaleString('es-CL')+' RU/año';
+    var row2=document.getElementById('irT2row');
+    row2.style.opacity=t2>0?'1':'0.4';
+    row2.style.borderLeftColor=t2>0?'#5a9e3a':'rgba(255,255,255,.2)';
+  }
+  sl.addEventListener('input',upd);
+  upd();
+})();
+// Header shrink on scroll
+(function(){
+  var hdr=document.querySelector('.header');
+  window.addEventListener('scroll',function(){
+    hdr.classList.toggle('shrank',window.scrollY>60);
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
+<!-- Made with Bob -->

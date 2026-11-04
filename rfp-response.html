@@ -495,40 +495,127 @@ footer p{opacity:.65;margin-bottom:8px}
 <section class="light" id="casos-exito">
   <div class="wrap">
     <span class="eyebrow">V · Casos de éxito — 10%</span>
-    <h2 class="title">Implementaciones probadas en manufactura, forestal y retail</h2>
-    <p class="lead">IBM Integration tiene presencia en industrias de producción intensiva en LATAM. A continuación los patrones de referencia aplicables al contexto de CMPC:</p>
-    <div class="grid g2">
-      <div class="card">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">V1</span><span class="chip o">Score 5/5</span></div>
-        <h3>Industria 4.0: manufactura y forestal en LATAM</h3>
-        <p style="color:var(--gray);margin-bottom:12px">IBM Integration es la plataforma de referencia IBM para Industria 4.0 en LATAM, conectando sistemas de planta con sistemas corporativos mediante Edge Runtimes y arquitectura híbrida.</p>
-        <ul class="check-list">
-          <li><span class="ck">✓</span>Integración planta-corporativo con Edge Runtime para baja latencia</li>
-          <li><span class="ck">✓</span>Sincronización órdenes de producción SAP ↔ sistemas MES</li>
-          <li><span class="ck">✓</span>Procesamiento de eventos de planta en tiempo real</li>
-          <li><span class="ck">✓</span>Soberanía de datos: datos de producción permanecen locales</li>
-        </ul>
-        <p class="note"><em>Casos nominales específicos en forestal/manufactura LATAM disponibles a solicitud del equipo IBM Chile.</em></p>
-      </div>
-      <div class="card">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">V2</span><span class="chip o">Score 5/5</span></div>
-        <h3>Integración SAP y Salesforce en Chile</h3>
-        <p style="color:var(--gray);margin-bottom:12px">Los adaptadores SAP y Salesforce de IBM Integration han sido implementados en proyectos de empresas en Chile para procesos Order-to-Cash, Master Data y sincronización comercial.</p>
-        <ul class="check-list">
-          <li><span class="ck">✓</span>Order-to-Cash: SAP SD ↔ Salesforce CRM</li>
-          <li><span class="ck">✓</span>Sincronización de maestros de clientes SAP ↔ Salesforce</li>
-          <li><span class="ck">✓</span>Automatización de confirmaciones de despacho</li>
-          <li><span class="ck">✓</span>Integración BAPI/IDoc con S/4HANA On-Premise</li>
-        </ul>
-        <p class="note"><em>Referencias de clientes en Chile disponibles bajo NDA con el equipo IBM Chile.</em></p>
+    <h2 class="title">Clientes reales con contexto similar al de CMPC</h2>
+    <p class="lead">Los siguientes casos provienen del portafolio IBM Integration (webMethods Hybrid). Se seleccionaron por afinidad de industria, escala y desafíos de integración con CMPC.</p>
+
+    <!-- V1: Criterio manufactura/forestal LATAM -->
+    <div style="margin-bottom:clamp(16px,1.8vw,28px)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">V1</span><span class="chip o">Manufactura · Forestal · Agroindustria</span></div>
+      <div class="grid g3">
+
+        <!-- Caso 1: Empresa papel y celulosa (best case CMPC) -->
+        <div class="card" style="border:2px solid var(--accent)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <span style="background:var(--accent);color:#fff;padding:3px 12px;border-radius:6px;font-size:.72rem;font-weight:700;text-transform:uppercase">⭐ Best case de referencia para CMPC</span>
+            <span style="font-size:.75rem;color:var(--gray)">Papel y celulosa · Norteamérica · T4 2025</span>
+          </div>
+          <h3 style="font-size:1.05rem">Líder global de papel y celulosa</h3>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Desafío:</strong> Restricciones de licenciamiento on-prem bloqueaban la nube; altos costos de herramientas superpuestas (incl. OpenText MFT); integraciones basadas en archivos sin APIs ni visibilidad end-to-end.</p>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Solución:</strong> Migración a IBM webMethods Integration SaaS (iPaaS híbrido). Consolidación de OpenText y herramientas puntuales en webMethods (APIs, eventos y MFT). Expert Labs para migración sin disrupción.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:80px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">USD 2–3M</div><div style="font-size:.75rem;color:var(--gray)">ahorro anual</div></div>
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:80px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">On-prem → SaaS</div><div style="font-size:.75rem;color:var(--gray)">migración híbrida</div></div>
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:80px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">APIs + MFT + EDA</div><div style="font-size:.75rem;color:var(--gray)">consolidado</div></div>
+          </div>
+          <p class="note">Caso de uso interno IBM (For Internal Use Only). Referencia disponible a través del equipo IBM Chile.</p>
+        </div>
+
+        <!-- Caso 2: Mondi Packaging -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <span style="background:rgba(58,107,30,.12);color:var(--accent-dk);padding:3px 12px;border-radius:6px;font-size:.72rem;font-weight:700;text-transform:uppercase">Papel · Forestal · Envases</span>
+            <span style="font-size:.75rem;color:var(--gray)">Global</span>
+          </div>
+          <h3 style="font-size:1.05rem">Mondi Packaging</h3>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Desafío:</strong> TI heterogénea con más de 20 sistemas de back-office por adquisiciones de plantas. Necesitaba conectar todo a un único portal global de ventas.</p>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Solución:</strong> Capa de integración con webMethods: conecta compras, contabilidad, planificación de producción (incluyendo SAP) y 42 plantas con datos XML y estándares CPFR.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:60px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">42</div><div style="font-size:.75rem;color:var(--gray)">plantas conectadas</div></div>
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:60px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">20+</div><div style="font-size:.75rem;color:var(--gray)">sistemas integrados</div></div>
+          </div>
+          <p class="note">Caso de la era Software AG (hoy IBM webMethods). Fuente: portafolio público IBM.</p>
+        </div>
+
+        <!-- Caso 3: Nutrien -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <span style="background:rgba(58,107,30,.12);color:var(--accent-dk);padding:3px 12px;border-radius:6px;font-size:.72rem;font-weight:700;text-transform:uppercase">Agroindustria</span>
+            <span style="font-size:.75rem;color:var(--gray)">Canadá</span>
+          </div>
+          <h3 style="font-size:1.05rem">Nutrien</h3>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Desafío:</strong> 15 años de fusiones dejaron un TI complejo: múltiples ERPs, plataformas cloud y sistemas heredados sin visibilidad unificada.</p>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Solución:</strong> IBM Integration simplificó el entorno conectando ERPs, nubes y sistemas heredados en cadena de suministro, datos de clientes e innovación hacia sostenibilidad.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:60px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">20</div><div style="font-size:.75rem;color:var(--gray)">integ. complejas/año adicionales</div></div>
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:60px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">157</div><div style="font-size:.75rem;color:var(--gray)">conectores disponibles</div></div>
+          </div>
+          <p class="note">Fuente: IBM Win Stories CMPC IWHI (portafolio IBM).</p>
+        </div>
+
       </div>
     </div>
+
+    <!-- V2: Criterio SAP/Salesforce -->
+    <div style="margin-bottom:clamp(16px,1.8vw,28px)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span class="criteria-id">V2</span><span class="chip o">Integración SAP · Salesforce · Manufactura</span></div>
+      <div class="grid g3">
+
+        <!-- Caso 4: Regal Rexnord -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <span style="background:rgba(58,107,30,.12);color:var(--accent-dk);padding:3px 12px;border-radius:6px;font-size:.72rem;font-weight:700;text-transform:uppercase">Manufactura industrial</span>
+            <span style="font-size:.75rem;color:var(--gray)">EE.UU.</span>
+          </div>
+          <h3 style="font-size:1.05rem">Regal Rexnord</h3>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Desafío:</strong> Complejidad de integración entre múltiples sistemas y unidades de negocio de un fabricante global (SAP, Oracle, e-commerce, cadena de suministro).</p>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Solución:</strong> IBM webMethods como columna vertebral escalable: conecta SAP, Oracle, e-commerce y cadena de suministro con B2B/EDI de alto volumen. Lista para crecer con IA.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1"><div style="font-size:1rem;font-weight:900;color:var(--accent-dk)">SAP + Oracle + e-commerce</div><div style="font-size:.75rem;color:var(--gray)">integrados en una plataforma</div></div>
+          </div>
+          <p class="note">Fuente: IBM Win Stories CMPC IWHI (portafolio IBM).</p>
+        </div>
+
+        <!-- Caso 5: Bonfiglioli -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <span style="background:rgba(58,107,30,.12);color:var(--accent-dk);padding:3px 12px;border-radius:6px;font-size:.72rem;font-weight:700;text-transform:uppercase">Manufactura + Salesforce</span>
+            <span style="font-size:.75rem;color:var(--gray)">Italia</span>
+          </div>
+          <h3 style="font-size:1.05rem">Bonfiglioli</h3>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Desafío:</strong> Necesitaba modernizar su capa de integración para acompañar un nuevo modelo de negocio y sumar servicios generadores de ingresos.</p>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Solución:</strong> IBM webMethods como iPaaS: APIs propias e integración con <strong>Salesforce</strong>, Microsoft 365 y otras apps SaaS. SSO en todos los portales web.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:60px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">135</div><div style="font-size:.75rem;color:var(--gray)">nuevas APIs en 3 años</div></div>
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:60px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">1 clic</div><div style="font-size:.75rem;color:var(--gray)">reemplaza actualizaciones manuales</div></div>
+          </div>
+          <p class="note">Fuente: IBM Win Stories CMPC IWHI (portafolio IBM).</p>
+        </div>
+
+        <!-- Caso 6: SOCOMEC -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <span style="background:rgba(58,107,30,.12);color:var(--accent-dk);padding:3px 12px;border-radius:6px;font-size:.72rem;font-weight:700;text-transform:uppercase">Manufactura · Mult-filiales</span>
+            <span style="font-size:.75rem;color:var(--gray)">Francia</span>
+          </div>
+          <h3 style="font-size:1.05rem">SOCOMEC</h3>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Desafío:</strong> Integraciones punto a punto, visibilidad limitada y uso creciente de herramientas en nube dispersas entre filiales.</p>
+          <p style="color:var(--gray);font-size:.88rem;margin-bottom:10px"><strong>Solución:</strong> IBM Integration: tiempo real, orquestación centralizada de flujos y gestión segura de APIs. Equipos de negocio resuelven excepciones por sí solos.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:60px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">11</div><div style="font-size:.75rem;color:var(--gray)">filiales con visibilidad 360°</div></div>
+            <div style="background:#e8f0e4;border-radius:10px;padding:8px 14px;text-align:center;flex:1;min-width:60px"><div style="font-size:1.4rem;font-weight:900;color:var(--accent-dk)">10.000</div><div style="font-size:.75rem;color:var(--gray)">interfaces diarias orquestadas</div></div>
+          </div>
+          <p class="note">Fuente: IBM Win Stories CMPC IWHI (portafolio IBM).</p>
+        </div>
+
+      </div>
+    </div>
+
     <div style="margin-top:clamp(16px,1.8vw,28px);background:rgba(58,107,30,.07);border-left:4px solid var(--accent-dk);border-radius:0 10px 10px 0;padding:14px 18px">
-      <span style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent-dk)">📄 Referencia en documento técnico</span>
+      <span style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent-dk)">📄 Referencia en documento técnico + fuente de casos</span>
       <p style="font-size:.88rem;color:var(--gray);margin-top:6px">
-        <strong>Cap. 14</strong> — Industria 4.0: la visión de IBM (§14.2, §14.7 Cómo IBM Integration habilita esta visión, §14.8 Lectura para CMPC) ·
-        <strong>Cap. 13</strong> — Arquitectura de referencia CMPC (§13.5 Escenario planta industrial, §13.7 Hoja de adopción sugerida) ·
-        <strong>Cap. 15</strong> — Ventajas y diferenciadores (§15.7 SAP y Salesforce, §15.3 Convivencia con sistemas existentes)
+        <strong>Cap. 14</strong> — Industria 4.0: la visión de IBM (§14.7, §14.8 Lectura para CMPC) ·
+        <strong>Cap. 13</strong> — Arquitectura de referencia CMPC (§13.4–13.6 Escenarios de referencia) ·
+        Casos de clientes: <strong>IBM Win Stories CMPC IWHI.pptx</strong> (portafolio IBM — For Internal Use Only)
       </p>
     </div>
   </div>

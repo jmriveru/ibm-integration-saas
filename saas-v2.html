@@ -275,6 +275,10 @@ footer p{opacity:.65;margin-bottom:8px}
     <a href="#uso">Uso</a>
     <a href="#hybrid">Hybrid</a>
     <a href="#calculadora">Calculadora</a>
+    <a href="#modelos-cobro">Modelos cobro</a>
+    <a href="#caso-cmpc">Caso CMPC</a>
+    <a href="#costos-ocultos">Costos ocultos</a>
+    <a href="#finops">FinOps</a>
     <a href="#servicio">SLA</a>
     <a href="#recursos">Recursos</a>
   </nav>
@@ -907,6 +911,287 @@ footer p{opacity:.65;margin-bottom:8px}
     </div>
   </div>
 </section>
+
+
+<!-- ============ 06-A · MODELOS DE COBRO ============ -->
+<section class="dark" id="modelos-cobro">
+  <div class="wrap">
+    <span class="eyebrow">06 · A · Modelos de cobro</span>
+    <h2 class="title">Consumption vs Capacity: dos formas de licenciar</h2>
+    <p class="lead">IBM Integration Software se puede licenciar bajo dos modelos distintos. <strong style="color:var(--accent)">IBM Integration SaaS opera exclusivamente bajo Consumption.</strong> El modelo Capacity aplica a despliegues on-premises o en nube privada.</p>
+    <div style="overflow-x:auto;margin-bottom:clamp(16px,2vw,32px)">
+      <table style="width:100%;border-collapse:collapse;font-size:.93em">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:12px 16px;border-bottom:2px solid var(--accent);color:var(--accent);font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;width:28%">Dimensión</th>
+            <th style="text-align:center;padding:12px 16px;border-bottom:2px solid var(--accent);color:#fff;background:rgba(90,158,58,.18);border-radius:8px 8px 0 0">
+              <span style="display:inline-block;background:var(--accent);color:#fff;padding:3px 14px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">SaaS ✓</span><br>
+              Consumption
+            </th>
+            <th style="text-align:center;padding:12px 16px;border-bottom:2px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7)">Capacity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.07)">
+            <td style="padding:11px 16px;color:rgba(255,255,255,.6);font-size:.88em">Tipo de modelo</td>
+            <td style="padding:11px 16px;text-align:center;color:#fff">Draw-down de pool de RU</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,255,255,.7)">Count-up hasta techo de VPC</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03)">
+            <td style="padding:11px 16px;color:rgba(255,255,255,.6);font-size:.88em">Unidad de medida</td>
+            <td style="padding:11px 16px;text-align:center;color:#fff">Resource Units (RU)</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,255,255,.7)">Virtual Processor Cores (VPC)</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.07)">
+            <td style="padding:11px 16px;color:rgba(255,255,255,.6);font-size:.88em">Costo por transacción</td>
+            <td style="padding:11px 16px;text-align:center;color:#fff">Sí — tiers decrecientes por volumen</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,255,255,.7)">No — se paga por capacidad desplegada</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03)">
+            <td style="padding:11px 16px;color:rgba(255,255,255,.6);font-size:.88em">Workload variable</td>
+            <td style="padding:11px 16px;text-align:center;color:var(--accent);font-weight:700">✓ Alta flexibilidad</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,255,255,.7)">Media — limitado por techo VPC</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.07)">
+            <td style="padding:11px 16px;color:rgba(255,255,255,.6);font-size:.88em">Recomendado para</td>
+            <td style="padding:11px 16px;text-align:center;color:#fff">Cargas variables, SaaS, inicio rápido</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,255,255,.7)">Cargas estables, on-prem, volumen predecible</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03)">
+            <td style="padding:11px 16px;color:rgba(255,255,255,.6);font-size:.88em">Ambientes no-productivos</td>
+            <td style="padding:11px 16px;text-align:center;color:#fff">~50% de las tasas de producción</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,255,255,.7)">2× ratio VPC más generoso (doble entitlement)</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.07)">
+            <td style="padding:11px 16px;color:rgba(255,255,255,.6);font-size:.88em">Reset anual</td>
+            <td style="padding:11px 16px;text-align:center;color:#fff">Pool RU se reinicia cada año de contrato</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,255,255,.7)">VPCs no vencen; pueden retirarse cuando quiera</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;color:rgba(255,255,255,.6);font-size:.88em">Devolución de saldo</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,160,80,.9);font-weight:600">✗ RU no usados se pierden al año</td>
+            <td style="padding:11px 16px;text-align:center;color:rgba(255,255,255,.7)">✓ Se pueden retirar VPCs y reasignar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="color:rgba(255,255,255,.55)">Fuente: IBM Integration Software Consumption License Guide 16.2.1 (5900-BR1) e IBM Integration Software Capacity License Guide 16.2.1 (5737-I89).</p>
+  </div>
+</section>
+
+<!-- ============ 06-B · CASO DE NEGOCIO CMPC ============ -->
+<section class="light" id="caso-cmpc">
+  <div class="wrap">
+    <span class="eyebrow">06 · B · Caso de negocio</span>
+    <h2 class="title">Simulación: 120 integraciones, 1 M transacciones/mes</h2>
+    <p class="lead">Escenario solicitado por CMPC: 120 flujos de integración activos, 1.000.000 transacciones mensuales, mensajes de hasta 250 KB. A continuación el desglose de Resource Units.</p>
+    <div class="grid g4" style="margin-bottom:clamp(20px,2vw,36px)">
+      <!-- Tarjeta 1: El escenario -->
+      <div class="card">
+        <div class="chip o">El escenario</div>
+        <h3>Punto de partida</h3>
+        <ul>
+          <li><strong>120 flujos</strong> de integración activos</li>
+          <li><strong>1.000.000 trx</strong> por mes (12 M/año)</li>
+          <li>Mensajes de <strong>máximo 250 KB</strong></li>
+          <li>1 ambiente productivo + 1 pre-productivo</li>
+        </ul>
+        <p class="note">Mensajes ≤250 KB no generan overage en Integration (el overage aplica por duración ≥60 s, no por tamaño).</p>
+      </div>
+      <!-- Tarjeta 2: Instancias -->
+      <div class="card">
+        <div class="chip o">Componente 1</div>
+        <h3>Instancias</h3>
+        <ul>
+          <li>1× webMethods Integration <strong>Prod</strong>: 60 RU/mes × 12 = <strong>720 RU</strong></li>
+          <li>1× webMethods Integration <strong>Pre-prod</strong>: 30 RU/mes × 12 = <strong>360 RU</strong></li>
+        </ul>
+        <div style="margin-top:14px;padding:10px 14px;background:var(--light);border-radius:10px;font-weight:700;color:var(--dark)">Subtotal instancias: 1.080 RU/año</div>
+      </div>
+      <!-- Tarjeta 3: Volumen de uso -->
+      <div class="card">
+        <div class="chip o">Componente 2</div>
+        <h3>Volumen de uso (producción)</h3>
+        <ul>
+          <li>12 M trx/año en Integration</li>
+          <li>Tier 1 (primeros 10 M): (10 M ÷ 100 K) × 20 RU = <strong>2.000 RU</strong></li>
+          <li>Tier 2 (2 M restantes): (2 M ÷ 100 K) × 4 RU = <strong>80 RU</strong></li>
+          <li>Pre-prod (~20% de trx): ~200 K trx/mes × 12 × tasa 50% = <strong>~240 RU</strong></li>
+        </ul>
+        <div style="margin-top:14px;padding:10px 14px;background:var(--light);border-radius:10px;font-weight:700;color:var(--dark)">Subtotal uso: ~2.320 RU/año</div>
+      </div>
+      <!-- Tarjeta 4: Total -->
+      <div class="card" style="border:2px solid var(--accent)">
+        <div class="chip o">Total estimado</div>
+        <h3>RU anuales para el escenario</h3>
+        <div style="font-size:clamp(2rem,3.5vw,3.2rem);font-weight:900;color:var(--accent);line-height:1;margin:16px 0">~3.400<span style="font-size:.4em;font-weight:600;color:var(--gray);display:block">RU / año</span></div>
+        <ul style="font-size:.88em">
+          <li>Instancias: 1.080 RU</li>
+          <li>Uso prod: 2.080 RU</li>
+          <li>Uso pre-prod: ~240 RU</li>
+        </ul>
+        <p class="note">Sin Hybrid Control Plane ni red privada. El escenario no activa costos de Aspera ni GraphQL.</p>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <button onclick="(function(){var el=document.getElementById('calculadora');if(el){var set=function(id,v){var f=document.getElementById(id);if(f){f.value=v.toLocaleString('es-CL');f.dispatchEvent(new Event('input'));}}; set('i0_0',1);set('i0_1',1);set('v0_0',1000000);set('v0_1',200000); el.scrollIntoView({behavior:'smooth',block:'start'});}})();" style="display:inline-block;background:var(--accent);color:#fff;padding:12px 32px;border-radius:50px;font-size:.9rem;font-weight:700;border:none;cursor:pointer;letter-spacing:.5px">Ver en calculadora →</button>
+    </div>
+    <p class="note" style="text-align:center;margin-top:12px">Los campos de la calculadora se precargarán con los valores de este escenario.</p>
+  </div>
+</section>
+
+<!-- ============ 06-C · COSTOS OCULTOS ============ -->
+<section class="alt" id="costos-ocultos">
+  <div class="wrap">
+    <span class="eyebrow">06 · C · Costos ocultos</span>
+    <h2 class="title">Lo que sí y lo que no incluye su suscripción</h2>
+    <p class="lead">Hay conceptos que generan consumo de RU más allá de la instancia mensual. Conocerlos evita sorpresas al cierre del año de contrato.</p>
+    <div class="grid g2" style="margin-bottom:clamp(20px,2vw,36px)">
+      <!-- Incluido sin cargo adicional -->
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <span style="background:rgba(58,138,42,.15);color:var(--success);padding:4px 14px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase">✓ Incluido sin cargo adicional</span>
+        </div>
+        <ul style="list-style:none;padding:0">
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--success);font-size:1.1em;flex-shrink:0">✓</span><span><strong>Desarrollo y pruebas unitarias</strong> — exento explícitamente en ambos modelos de licencia</span></li>
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--success);font-size:1.1em;flex-shrink:0">✓</span><span><strong>Pruebas funcionales</strong> en máquinas compartidas — no consume RU ni VPC</span></li>
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--success);font-size:1.1em;flex-shrink:0">✓</span><span><strong>Herramientas de migración</strong> (LocationAgent, Migration Tools) — sin cargo</span></li>
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--success);font-size:1.1em;flex-shrink:0">✓</span><span><strong>Platform UI</strong> — gratuito salvo que habilite AI Agents</span></li>
+          <li style="padding:9px 0;display:flex;gap:10px"><span style="color:var(--success);font-size:1.1em;flex-shrink:0">✓</span><span><strong>MQ MFT Agent</strong> — no cuenta en la métrica de transacciones</span></li>
+        </ul>
+      </div>
+      <!-- Genera RU adicionales -->
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <span style="background:rgba(212,160,23,.13);color:var(--warning);padding:4px 14px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase">⚠ Genera RU adicionales</span>
+        </div>
+        <ul style="list-style:none;padding:0">
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--warning);font-size:1.1em;flex-shrink:0">⚠</span><span><strong>Ambiente pre-productivo / staging</strong> — ~50% de las tasas de producción</span></li>
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--warning);font-size:1.1em;flex-shrink:0">⚠</span><span><strong>QA con carga simulada</strong> — se factura como no-producción (mismo tratamiento que pre-prod)</span></li>
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--warning);font-size:1.1em;flex-shrink:0">⚠</span><span><strong>Overage B2B por tamaño</strong> — 1 trx adicional por cada 5 KB sobre el umbral de 5 KB</span></li>
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--warning);font-size:1.1em;flex-shrink:0">⚠</span><span><strong>Overage Integration por duración</strong> — 1 trx adicional por cada 60 s sobre los primeros 60 s de ejecución</span></li>
+          <li style="padding:9px 0;border-bottom:1px solid var(--light);display:flex;gap:10px"><span style="color:var(--warning);font-size:1.1em;flex-shrink:0">⚠</span><span><strong>Transferencia de datos Aspera (egress)</strong> — se factura por TB transferido (ver tabla abajo)</span></li>
+          <li style="padding:9px 0;display:flex;gap:10px"><span style="color:var(--danger);font-size:1.1em;flex-shrink:0">✗</span><span><strong>watsonx.ai</strong> para AI Agents — licencia separada, <em>no incluida</em> en IBM Integration SaaS</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tabla de tasas de overage y Aspera -->
+    <h3 style="font-size:clamp(1rem,1.3vw,1.4rem);font-weight:800;margin-bottom:12px;color:var(--dark)">Tasas de overage y Aspera (Consumption)</h3>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:.88em">
+        <thead>
+          <tr style="background:var(--light)">
+            <th style="text-align:left;padding:10px 14px;font-size:.75rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--gray);border-bottom:2px solid var(--accent)">Concepto</th>
+            <th style="text-align:center;padding:10px 14px;font-size:.75rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--gray);border-bottom:2px solid var(--accent)">Umbral</th>
+            <th style="text-align:center;padding:10px 14px;font-size:.75rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--gray);border-bottom:2px solid var(--accent)">Producción</th>
+            <th style="text-align:center;padding:10px 14px;font-size:.75rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--gray);border-bottom:2px solid var(--accent)">No-producción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--light)">
+            <td style="padding:10px 14px">Overage B2B por tamaño de documento</td>
+            <td style="padding:10px 14px;text-align:center">5 KB por documento</td>
+            <td style="padding:10px 14px;text-align:center">+1 trx por cada 5 KB adicionales</td>
+            <td style="padding:10px 14px;text-align:center">~50% de tasa producción</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--light);background:var(--light)">
+            <td style="padding:10px 14px">Overage Integration por duración</td>
+            <td style="padding:10px 14px;text-align:center">60 s de ejecución</td>
+            <td style="padding:10px 14px;text-align:center">+1 trx por cada 60 s adicionales</td>
+            <td style="padding:10px 14px;text-align:center">~50% de tasa producción</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--light)">
+            <td style="padding:10px 14px">Aspera data transfer — Tier 1</td>
+            <td style="padding:10px 14px;text-align:center">Primeros 1.000 TB/año</td>
+            <td style="padding:10px 14px;text-align:center;font-weight:700">8 RU / TB</td>
+            <td style="padding:10px 14px;text-align:center">4 RU / TB</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--light);background:var(--light)">
+            <td style="padding:10px 14px">Aspera data transfer — Tier 2</td>
+            <td style="padding:10px 14px;text-align:center">1.000 – 10.000 TB/año</td>
+            <td style="padding:10px 14px;text-align:center;font-weight:700">3 RU / TB</td>
+            <td style="padding:10px 14px;text-align:center">1,5 RU / TB</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px">Aspera data transfer — Tier 3</td>
+            <td style="padding:10px 14px;text-align:center">&gt; 10.000 TB/año</td>
+            <td style="padding:10px 14px;text-align:center;font-weight:700">1 RU / TB</td>
+            <td style="padding:10px 14px;text-align:center">0,5 RU / TB</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Fuente: IBM Integration Software Consumption License Guide 16.2.1 (5900-BR1). Las tasas de non-prod son aproximadamente el 50% de las de producción.</p>
+  </div>
+</section>
+
+<!-- ============ 06-D · FINOPS ============ -->
+<section class="dark" id="finops">
+  <div class="wrap">
+    <span class="eyebrow">06 · D · FinOps</span>
+    <h2 class="title">Visibilidad de consumo: qué ve CMPC cada día</h2>
+    <p class="lead">IBM Integration SaaS incluye capacidades nativas de monitoreo de consumo. No se requieren herramientas externas para el seguimiento diario, mensual y anual del pool de RU.</p>
+    <div class="grid g3" style="margin-bottom:clamp(20px,2vw,36px)">
+      <div class="card-d">
+        <div style="font-size:2rem;margin-bottom:10px">📊</div>
+        <h3>Usage Analytics</h3>
+        <p>Panel en tiempo real que muestra el consumo desagregado por capacidad (Integration, API Connect, B2B, MQ…) y por tipo de transacción. Permite identificar qué componente consume más RU en cualquier momento.</p>
+      </div>
+      <div class="card-d">
+        <div style="font-size:2rem;margin-bottom:10px">🔄</div>
+        <h3>Reporting automático</h3>
+        <p>La plataforma reporta el consumo a IBM de forma automática mediante conexión saliente a internet. Si no hay conectividad saliente, el reporte puede hacerse de forma manual mensual usando las herramientas IBM designadas.</p>
+      </div>
+      <div class="card-d">
+        <div style="font-size:2rem;margin-bottom:10px">📈</div>
+        <h3>Proyección y planificación</h3>
+        <p>Predictive analytics integrado proyecta la tasa de consumo actual contra el pool anual contratado. Las calculadoras de pricing permiten modelar nuevos escenarios antes de comprometer RU adicionales.</p>
+      </div>
+    </div>
+
+    <!-- Línea de tiempo del ciclo anual -->
+    <h3 style="font-size:clamp(1rem,1.2vw,1.3rem);font-weight:800;margin-bottom:16px;color:rgba(255,255,255,.9)">Ciclo anual de gestión de RU</h3>
+    <div style="display:flex;align-items:stretch;gap:0;flex-wrap:wrap">
+      <div style="flex:1;min-width:160px;background:rgba(90,158,58,.18);border:1px solid rgba(90,158,58,.35);border-radius:12px 0 0 12px;padding:16px;text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:6px">🏁</div>
+        <div style="font-weight:700;color:var(--accent);font-size:.88em">Inicio de contrato</div>
+        <div style="font-size:.8em;color:rgba(255,255,255,.65);margin-top:4px">Pool de RU disponible; contadores en cero</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 6px;color:rgba(255,255,255,.3);font-size:1.2rem">→</div>
+      <div style="flex:1;min-width:160px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);padding:16px;text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:6px">📉</div>
+        <div style="font-weight:700;color:rgba(255,255,255,.85);font-size:.88em">Consumo mensual</div>
+        <div style="font-size:.8em;color:rgba(255,255,255,.55);margin-top:4px">Instancias + transacciones van descontando del pool</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 6px;color:rgba(255,255,255,.3);font-size:1.2rem">→</div>
+      <div style="flex:1;min-width:160px;background:rgba(212,160,23,.12);border:1px solid rgba(212,160,23,.3);padding:16px;text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:6px">🔔</div>
+        <div style="font-weight:700;color:var(--warning);font-size:.88em">Alerta de pool bajo</div>
+        <div style="font-size:.8em;color:rgba(255,255,255,.55);margin-top:4px">Predictive analytics avisa antes de agotar el pool</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 6px;color:rgba(255,255,255,.3);font-size:1.2rem">→</div>
+      <div style="flex:1;min-width:160px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);padding:16px;text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:6px">📋</div>
+        <div style="font-weight:700;color:rgba(255,255,255,.85);font-size:.88em">Reporting automático</div>
+        <div style="font-size:.8em;color:rgba(255,255,255,.55);margin-top:4px">IBM recibe datos de consumo; disponible en el portal</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 6px;color:rgba(255,255,255,.3);font-size:1.2rem">→</div>
+      <div style="flex:1;min-width:160px;background:rgba(90,158,58,.12);border:1px solid rgba(90,158,58,.28);border-radius:0 12px 12px 0;padding:16px;text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:6px">🔃</div>
+        <div style="font-weight:700;color:var(--accent);font-size:.88em">Reset anual</div>
+        <div style="font-size:.8em;color:rgba(255,255,255,.55);margin-top:4px">Contadores a cero; nuevo pool del año de contrato</div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(20px,2vw,36px);background:rgba(90,158,58,.12);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 20px">
+      <strong style="color:var(--accent)">Punto clave para CMPC:</strong>
+      <span style="color:rgba(255,255,255,.82)"> Los contadores de volumen (transacciones, eventos, llamadas API) se reinician cada año de contrato — no mensualmente. Esto permite absorber picos de fin de mes o campañas sin impacto inmediato, siempre que el pool anual sea suficiente.</span>
+    </div>
+    <p class="note" style="color:rgba(255,255,255,.45);margin-top:12px">Fuente: IBM Integration Software Consumption License Guide 16.2.1 (5900-BR1) y "Everything you need to know about IBM Integration".</p>
+  </div>
+</section>
+
 
 <!-- ============ MENSAJES DE IA / INTERACT GATEWAY ============ -->
 <section class="alt" id="dependencias">

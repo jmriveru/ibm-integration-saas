@@ -778,11 +778,63 @@ footer p{opacity:.65;margin-bottom:8px}
           <li>Se mide por el <b>peak del mes</b>: se toma la cantidad máxima de runtimes remotos conectados en el mes calendario.</li>
           <li>Event Gateways, DataPower Gateways y webMethods Integration Edge Runtimes que se usan como software habilitador <b>no se incluyen</b> en el cálculo de RU.</li>
         </ul>
+        <div style="margin-top:18px;padding:14px 18px;background:rgba(255,255,255,.07);border-radius:12px;display:flex;align-items:center;gap:16px">
+          <div style="font-size:clamp(2rem,2.8vw,3.2rem);font-weight:900;color:var(--accent);line-height:1;flex-shrink:0">5 RU</div>
+          <p style="margin:0;font-size:.92em;color:rgba(255,255,255,.8)">por mes por cada entorno con <b style="color:#fff">conectividad de red privada</b> habilitada.</p>
+        </div>
       </div>
-      <div class="card-d">
-        <h3>Conexión de red privada</h3>
-        <div style="font-size:clamp(2.2rem,3.2vw,4rem);font-weight:900;color:var(--accent);line-height:1;margin:6px 0">5 RU</div>
-        <p>por mes, por cada entorno con conectividad de red privada habilitada.</p>
+      <div class="card-d" style="display:flex;flex-direction:column;gap:10px">
+        <h3>Eficiencia de escala</h3>
+        <p style="font-size:.88em;color:rgba(255,255,255,.7);margin:0">A mayor volumen de runtimes, menor costo por unidad — los primeros 100/año cuestan el doble que los adicionales.</p>
+        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;margin-top:4px" font-family="'IBM Plex Sans','Segoe UI',sans-serif">
+          <defs>
+            <linearGradient id="barG1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5a9e3a"/><stop offset="100%" stop-color="#3a6b1e"/></linearGradient>
+            <linearGradient id="barG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3a6b1e"/><stop offset="100%" stop-color="#1a3d1a"/></linearGradient>
+          </defs>
+          <!-- Grid lines -->
+          <g stroke="rgba(255,255,255,.1)" stroke-width="1">
+            <line x1="52" y1="20" x2="52" y2="158"/>
+            <line x1="52" y1="20" x2="310" y2="20"/>
+            <line x1="52" y1="69" x2="310" y2="69"/>
+            <line x1="52" y1="113" x2="310" y2="113"/>
+            <line x1="52" y1="158" x2="310" y2="158"/>
+          </g>
+          <!-- Y axis labels -->
+          <g fill="rgba(255,255,255,.5)" font-size="9" text-anchor="end">
+            <text x="48" y="23">2 RU</text>
+            <text x="48" y="72">1.5</text>
+            <text x="48" y="116">1</text>
+            <text x="48" y="161">0</text>
+          </g>
+          <!-- Bars: 3 groups — 50 IR, 100 IR, 200 IR -->
+          <!-- Group 1: 50 IR/año — todos a 2 RU/mes -->
+          <rect x="66" y="20" width="50" height="138" rx="5" fill="url(#barG1)"/>
+          <text x="91" y="16" text-anchor="middle" font-size="9" font-weight="700" fill="#7fb069">2 RU</text>
+          <!-- Group 2: 100 IR/año — todos a 2 RU/mes -->
+          <rect x="138" y="20" width="50" height="138" rx="5" fill="url(#barG1)"/>
+          <text x="163" y="16" text-anchor="middle" font-size="9" font-weight="700" fill="#7fb069">2 RU</text>
+          <!-- Group 3: 200 IR/año — primeros 100 a 2, resto a 1 RU/mes → promedio 1.5 -->
+          <rect x="210" y="45" width="50" height="113" rx="5" fill="url(#barG2)"/>
+          <text x="235" y="41" text-anchor="middle" font-size="9" font-weight="700" fill="#5a9e3a">1.5 RU</text>
+          <!-- Average line -->
+          <line x1="52" y1="69" x2="310" y2="69" stroke="#c49a6c" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text x="312" y="72" font-size="8" fill="#c49a6c">prom. 150+</text>
+          <!-- X axis labels -->
+          <g fill="rgba(255,255,255,.6)" font-size="9" text-anchor="middle">
+            <text x="91" y="172">50 IR / año</text>
+            <text x="163" y="172">100 IR / año</text>
+            <text x="235" y="172">200 IR / año</text>
+          </g>
+          <!-- X axis -->
+          <line x1="52" y1="158" x2="310" y2="158" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <!-- Y axis -->
+          <line x1="52" y1="20" x2="52" y2="158" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <!-- Annotation: descuento -->
+          <path d="M260,45 Q275,30 290,28" fill="none" stroke="#c49a6c" stroke-width="1.2"/>
+          <text x="291" y="26" font-size="8" fill="#c49a6c">−50% sobre 100</text>
+          <!-- Title -->
+          <text x="182" y="192" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.45)">RU promedio por runtime · según volumen anual</text>
+        </svg>
       </div>
     </div>
 

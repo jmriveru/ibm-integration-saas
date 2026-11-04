@@ -1009,35 +1009,95 @@ footer p{opacity:.65;margin-bottom:8px}
 <!-- ============ CONECTORES Y COMPONENTES ============ -->
 <section class="light" id="conectores">
   <div class="wrap">
-    <span class="eyebrow">10 · Detalles adicionales</span>
-    <h2 class="title">Conectores de terceros y software incluido</h2>
-    <p class="lead">Lo que viene con el servicio y lo que debe aportar usted.</p>
+    <span class="eyebrow">10 · Por qué IBM gana aquí</span>
+    <h2 class="title">Una plataforma. Todos los patrones. Sin sorpresas.</h2>
+    <p class="lead">IBM Integration cubre en un solo contrato lo que otras organizaciones resuelven con múltiples herramientas: integración de aplicaciones, APIs, B2B, transferencia de archivos, eventos y mensajería. Con conectividad SAP nativa, más de 400 conectores pre-construidos y capacidad de operar completamente sin conexión a la nube.</p>
 
-    <div class="grid g-split">
+    <!-- Bloque A: 5 argumentos de valor -->
+    <div class="grid g3" style="margin-bottom:clamp(28px,3vw,56px)">
+
+      <!-- Arg 1: SAP nativo -->
       <div class="card o">
-        <h3>Conectores de terceros</h3>
-        <p>IBM ofrece conectores a cientos de aplicaciones y fuentes de datos de terceros. Tenga presente que:</p>
-        <ul>
-          <li>Usted debe contar con su propia licencia y credenciales de acceso a esas aplicaciones; IBM no las incluye.</li>
-          <li>Usted es responsable de cumplir los términos y condiciones de cada aplicación de terceros.</li>
-          <li>IBM puede modificar o limitar un conector si el proveedor tercero lo exige, fuera del control de IBM.</li>
-          <li>Los logos de terceros en el catálogo son solo de identificación; no implican respaldo ni alianza.</li>
-        </ul>
+        <div class="chip o">Conectividad SAP</div>
+        <h3>SAP nativo sin costo adicional</h3>
+        <p>Conectividad directa con S/4HANA, SAP ECC y SAP BTP mediante RFC, IDoc, BAPI y OData. El runtime corre cerca del sistema SAP con idempotencia y reintentos documentados — sin adaptadores premium ni cotización separada.</p>
+        <p class="note" style="margin-top:10px">Fuente: IBM Integration — Architecture doc 2026</p>
       </div>
-      <div>
-        <div class="tbl-wrap">
-          <table class="t wide">
-            <tr><th>Software habilitador incluido</th><th>Cuándo aplica</th></tr>
-            <tr><td><b>IBM App Connect Enterprise Evaluation Edition</b></td><td>Al usar App Connect. Restringido al desarrollo de flujos con el ACE Toolkit.</td></tr>
-            <tr><td><b>IBM App Connect Enterprise Secure Agent 12.0.0</b></td><td>Al usar App Connect.</td></tr>
-            <tr><td><b>Event Gateway</b></td><td>Al usar Event Endpoint Management.</td></tr>
-            <tr><td><b>webMethods Integration Edge Runtime</b></td><td>Al usar webMethods Integration en IBM Integration SaaS o webMethods SaaS.</td></tr>
-            <tr><td><b>DataPower Gateway Virtual Edition</b></td><td>Al usar DataPower Gateway como gateway remoto con API Connect.</td></tr>
-          </table>
-        </div>
-        <p class="note">Estos componentes vienen con el servicio y no requieren compra separada, pero cada uno tiene sus propios términos de licencia.</p>
+
+      <!-- Arg 2: Runtimes predecibles -->
+      <div class="card o">
+        <div class="chip o">Runtimes remotos</div>
+        <h3>Sin incógnitas en el costo de conexión</h3>
+        <p>Cada runtime remoto consume una cantidad fija y conocida de RU por mes. La tarifa escala de forma favorable a mayor volumen. No hay cargos ocultos por cantidad de runtimes conectados al Hybrid Control Plane.</p>
+        <p class="note" style="margin-top:10px">Fuente: IBM Integration SaaS — License Guide for Sellers</p>
       </div>
+
+      <!-- Arg 3: Precio predecible sin escaladores -->
+      <div class="card o">
+        <div class="chip o">Modelo de precio</div>
+        <h3>Lo que se firma es lo que se paga</h3>
+        <p>El modelo de bolsa de RU define el costo total en el Transaction Document antes de contratar. No hay ajustes anuales automáticos ni cargos por capacidad no planificada durante la vigencia del contrato.</p>
+        <p class="note" style="margin-top:10px">Fuente: IBM Integration SaaS — License Guide for Sellers</p>
+      </div>
+
+      <!-- Arg 4: 400+ conectores -->
+      <div class="card o">
+        <div class="chip o">Catálogo</div>
+        <h3>Más de 400 conectores pre-construidos</h3>
+        <p>El catálogo incluye conectores para aplicaciones SaaS (Salesforce, ServiceNow), enterprise (SAP, bases de datos), REST/SOAP personalizados, on-premises y archivos planos — todos incluidos en la plataforma, sin add-ons premium.</p>
+        <p class="note" style="margin-top:10px">Fuente: IBM Integration — Architecture doc 2026, sección 3.2</p>
+      </div>
+
+      <!-- Arg 5: Hybrid air-gapped -->
+      <div class="card o" style="grid-column:span 2">
+        <div class="chip o">Diferenciador único</div>
+        <h3>Hybrid air-gapped: opera sin conexión a la nube</h3>
+        <p>IBM Integration es la única plataforma iPaaS del mercado que soporta el modo completamente air-gapped — sin requerir conectividad cloud. Los runtimes de planta procesan y almacenan localmente durante cortes de WAN, y sincronizan al restablecer la conexión. Clave para operaciones industriales y entornos regulados.</p>
+        <p class="note" style="margin-top:10px">Fuente: IBM Integration — Comprehensive Seller FAQ, "Many competitors cannot match the fully air-gapped option"</p>
+      </div>
+
     </div>
+
+    <!-- Bloque B: Software incluido mejorado -->
+    <h3 class="sub-h" style="margin-bottom:18px">Software incluido — sin compra separada</h3>
+    <div class="tbl-wrap" style="margin-bottom:clamp(24px,2.6vw,48px)">
+      <table class="t wide">
+        <tr><th>Componente</th><th>Cuándo se activa</th><th>Por qué importa</th></tr>
+        <tr>
+          <td><b>ACE Secure Agent 12.0.0</b></td>
+          <td>Al usar App Connect</td>
+          <td>Conectividad segura desde plantas sin abrir puertos de entrada — solo salida al control plane</td>
+        </tr>
+        <tr>
+          <td><b>webMethods Integration Edge Runtime</b></td>
+          <td>Al usar webMethods Integration</td>
+          <td>Procesamiento autónomo durante cortes de WAN en plantas industriales; cola local con reintentos</td>
+        </tr>
+        <tr>
+          <td><b>DataPower Gateway Virtual Edition</b></td>
+          <td>Al usar DataPower Gateway remoto con API Connect</td>
+          <td>Gateway de API enterprise con seguridad avanzada en el perímetro, sin licencia adicional</td>
+        </tr>
+        <tr>
+          <td><b>Event Gateway</b></td>
+          <td>Al usar Event Endpoint Management</td>
+          <td>Publica y consume eventos Kafka sin infraestructura adicional de mensajería</td>
+        </tr>
+        <tr>
+          <td><b>ACE Evaluation Edition</b></td>
+          <td>Al usar App Connect (desarrollo)</td>
+          <td>Desarrollo local de flujos con el ACE Toolkit sin licencia de desarrollo separada</td>
+        </tr>
+      </table>
+    </div>
+    <p class="note">Estos componentes se entregan con el servicio y no requieren compra separada. Cada uno tiene sus propios términos de licencia. Fuente: IBM Integration SaaS — License Guide for Sellers, sección Enabling Software.</p>
+
+    <!-- Bloque C: Insight de cierre -->
+    <div class="insight" style="margin-top:clamp(24px,2.6vw,48px)">
+      Una sola plataforma que consolida conectividad SAP, APIs, transferencia de archivos, B2B, eventos y mensajería — con trazabilidad end-to-end, operación híbrida air-gapped y cumplimiento normativo desde el día uno.
+      <small>Fuente: IBM Integration — Comprehensive Seller FAQ · What's New IBM Integration 2026</small>
+    </div>
+
   </div>
 </section>
 

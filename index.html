@@ -155,7 +155,14 @@ h3.sub-h{font-size:clamp(1.2rem,1.6vw,2rem);font-weight:800;margin:0 0 18px}
 .eqrow.total{background:var(--grad-1)}
 .eqrow.total b{color:#fff}
 .metric h3{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.metric .what{margin-bottom:12px;font-size:.95em}
+.metric details{margin-bottom:12px}
+.metric details summary{list-style:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:.78rem;font-weight:700;color:var(--accent-dk);letter-spacing:.3px;user-select:none;width:fit-content}
+.metric details summary::-webkit-details-marker{display:none}
+.metric details summary::before{content:'ℹ';display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--accent-dk);color:#fff;font-size:.72rem;font-weight:900;flex-shrink:0;transition:background .15s}
+.metric details[open] summary::before{background:var(--accent)}
+.metric details summary span{transition:color .15s}
+.metric details[open] summary span{color:var(--accent)}
+.metric .what{margin-top:8px;font-size:.92em;padding:10px 12px;background:rgba(58,107,30,.07);border-left:3px solid var(--accent-dk);border-radius:0 6px 6px 0}
 .metric .what b{color:var(--dark)}
 table.t{width:100%;border-collapse:collapse;font-size:.88em;margin-top:6px}
 table.t th{background:var(--dark);color:#fff;text-align:left;padding:8px 10px;font-weight:700;font-size:.85em}
@@ -704,32 +711,38 @@ footer p{opacity:.65;margin-bottom:8px}
 <h3 class="sub-h">Otras métricas de uso</h3>
 <div class="grid g3">
 
-      <div class="card metric"><h3>Transferencia de archivos (MFT)</h3><p class="what">Cada inicio de transferencia (entrante o saliente) = 1 transacción. Archivos de más de 5 MB suman 1 adicional por cada 5 MB extra (redondeado hacia arriba).</p>
+      <div class="card metric"><h3>Transferencia de archivos (MFT)</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Cada inicio de transferencia (entrante o saliente) = 1 transacción. Archivos de más de 5 MB suman 1 adicional por cada 5 MB extra (redondeado hacia arriba).</p></details>
         <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
         <tr><td>Hasta 100 M</td><td>100K</td><td>200K</td><td class="ru-c">4</td></tr>
         <tr><td>Sobre 100 M</td><td>100K</td><td>200K</td><td class="ru-c">1</td></tr></table></div>
 
-      <div class="card metric"><h3>Documentos B2B</h3><p class="what">Cada documento electrónico intercambiado (EDI, XML, CSV, etc.) = 1 transacción. Documentos de más de 5 KB suman 1 por cada 5 KB extra. En archivos batch, cada documento cuenta individualmente.</p>
+      <div class="card metric"><h3>Documentos B2B</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Cada documento electrónico intercambiado (EDI, XML, CSV, etc.) = 1 transacción. Documentos de más de 5 KB suman 1 por cada 5 KB extra. En archivos batch, cada documento cuenta individualmente.</p></details>
         <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
         <tr><td>Hasta 100 M</td><td>100K</td><td>200K</td><td class="ru-c">4</td></tr>
         <tr><td>Sobre 100 M</td><td>100K</td><td>200K</td><td class="ru-c">1</td></tr></table></div>
 
-      <div class="card metric"><h3>Value-Added Network (VAN)</h3><p class="what">Cada documento enviado o recibido por la VAN = 1 transacción. Más de 5 KB suma 1 por cada 5 KB extra; en batch, cada documento cuenta individualmente.</p>
+      <div class="card metric"><h3>Value-Added Network (VAN)</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Cada documento enviado o recibido por la VAN = 1 transacción. Más de 5 KB suma 1 por cada 5 KB extra; en batch, cada documento cuenta individualmente.</p></details>
         <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
         <tr><td>Hasta 1 M</td><td>10K</td><td>20K</td><td class="ru-c">30</td></tr>
         <tr><td>Sobre 1 M</td><td>10K</td><td>20K</td><td class="ru-c">10</td></tr></table></div>
 
-      <div class="card metric o"><h3>Llamadas GraphQL</h3><p class="what">Cada llamada a un endpoint de API Connect for GraphQL = 1, más 1 por cada subgrafo federado invocado en su cuenta. Ejemplo: una llamada que toca 3 subgrafos = 4 llamadas.</p>
+      <div class="card metric o"><h3>Llamadas GraphQL</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Cada llamada a un endpoint de API Connect for GraphQL = 1, más 1 por cada subgrafo federado invocado en su cuenta. Ejemplo: una llamada que toca 3 subgrafos = 4 llamadas.</p></details>
         <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
         <tr><td>Hasta 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">5</td></tr>
         <tr><td>Sobre 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">3</td></tr></table></div>
 
-      <div class="card metric o"><h3>Mensajes de IA</h3><p class="what">DataPower Interact Gateway. Cada invocación (a un modelo, herramienta MCP o agente) = 1 mensaje de IA. Requiere una instancia de API Connect.</p>
+      <div class="card metric o"><h3>Mensajes de IA</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">DataPower Interact Gateway. Cada invocación (a un modelo, herramienta MCP o agente) = 1 mensaje de IA. Requiere una instancia de API Connect.</p></details>
         <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
         <tr><td>Hasta 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">6</td></tr>
         <tr><td>Sobre 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">4</td></tr></table></div>
 
-      <div class="card metric o"><h3>Eventos</h3><p class="what">Event Endpoint Management. Cada mensaje publicado o recibido por un Event Gateway = 1 evento. Mensajes de más de 200 KB suman 1 por cada 200 KB extra (redondeado hacia arriba).</p>
+      <div class="card metric o"><h3>Eventos</h3>
+        <details><summary><span>¿Cómo se cuenta?</span></summary><p class="what">Event Endpoint Management. Cada mensaje publicado o recibido por un Event Gateway = 1 evento. Mensajes de más de 200 KB suman 1 por cada 200 KB extra (redondeado hacia arriba).</p></details>
         <table class="t"><tr><th>Tramo anual</th><th>Prod.</th><th>No-prod.</th><th>RU</th></tr>
         <tr><td>Hasta 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">3</td></tr>
         <tr><td>Sobre 1.000 M</td><td>1M</td><td>2M</td><td class="ru-c">2</td></tr></table></div>

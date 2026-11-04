@@ -87,6 +87,55 @@ footer{background:#0a140a;color:#fff;padding:40px var(--pad-x);text-align:center
 footer p{opacity:.65;margin-bottom:8px}
 @media(max-width:1100px){.header nav{display:none}}
 @media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* =========================================================
+   PRINT / PDF
+   ========================================================= */
+.btn-print{position:fixed;bottom:28px;right:28px;z-index:2000;background:var(--accent);color:#fff;border:none;border-radius:50px;padding:13px 26px;font-size:.9rem;font-weight:700;letter-spacing:.4px;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.35);display:flex;align-items:center;gap:9px;transition:background .2s,transform .15s}
+.btn-print:hover{background:var(--accent-dk);transform:translateY(-2px)}
+.btn-print svg{flex-shrink:0}
+@media print{
+  /* Ocultar elementos de navegación e interactividad */
+  .header,.btn-print{display:none!important}
+  /* Reset de body para impresión */
+  body{background:#fff!important;color:#000!important;padding-top:0!important;font-size:11pt!important;line-height:1.5}
+  /* Ajustes de página */
+  @page{size:A4;margin:15mm 12mm 18mm 12mm}
+  /* Asegurar que las secciones se vean bien */
+  section{padding:14pt 0!important;break-inside:avoid}
+  .wrap{max-width:100%!important}
+  /* Grids en 2 col máximo para A4 */
+  .g4{grid-template-columns:repeat(2,1fr)!important}
+  .g3{grid-template-columns:repeat(3,1fr)!important}
+  .g2{grid-template-columns:repeat(2,1fr)!important}
+  /* Hero: altura automática, sin gradientes de pantalla */
+  .hero{min-height:auto!important;background:#111a0f!important;color:#fff!important;padding:24pt 0 18pt!important}
+  .hero h1{font-size:22pt!important;-webkit-text-fill-color:#fff!important;background:none!important}
+  /* Cards en blanco */
+  .card{background:#fff!important;box-shadow:0 0 0 1px #ccc!important;break-inside:avoid}
+  .card-d{background:#1c3d1c!important;color:#fff!important;box-shadow:none!important;break-inside:avoid}
+  .card-d h3,.card-d p,.card-d li{color:#fff!important}
+  /* Mantener colores de acento */
+  .eyebrow,.criteria-id,.cat-card .cat-weight,.partner-card h4{color:#2d6a2d!important}
+  .check-list .ck{color:#2d6a2d!important}
+  /* Weight bars visibles */
+  .weight-bar{background:#ddd!important}
+  .weight-bar .fill{background:#2d6a2d!important}
+  /* Links: mostrar URL */
+  a[href]::after{content:" ("attr(href)")";font-size:.75em;opacity:.55}
+  a.cta-link::after,.header nav a::after{content:none}
+  /* Secciones con fondo oscuro: forzar legibilidad */
+  .dark{background:#111!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .dark p,.dark li,.dark p.lead{color:rgba(255,255,255,.85)!important}
+  /* Forzar impresión de fondos para secciones clave */
+  .light,.alt{background:#f8faf6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  /* Página de corte para categorías largas */
+  .cat-card{break-inside:avoid}
+  /* Footer de impresión */
+  footer{background:#0a140a!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  /* Ocultar referencias internas (links de navegación interna) */
+  .cta-link{border:1pt solid #2d6a2d!important;background:transparent!important;color:#2d6a2d!important;padding:6pt 14pt!important}
+}
 </style>
 </head>
 <body>
@@ -673,6 +722,14 @@ footer p{opacity:.65;margin-bottom:8px}
   <p>Doc 5953054998 · Preparado por IBM Chile</p>
   <p style="margin-top:12px;font-size:.8em;opacity:.4;border-top:1px solid rgba(255,255,255,.1);padding-top:12px">Made with IBM Bob</p>
 </footer>
+
+<!-- Botón flotante exportar PDF -->
+<button class="btn-print" onclick="window.print()" title="Exportar como PDF (Ctrl+P)">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
+  </svg>
+  Exportar PDF
+</button>
 
 <script>
 // Header shrink
